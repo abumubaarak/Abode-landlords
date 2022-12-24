@@ -8,11 +8,12 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
 import { GetStartedScreen } from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -47,6 +48,21 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
+  const [initializing, setInitializing] = useState(true);
+
+  function onAuthStateChanged(user: FirebaseAuthTypes.User) {
+    console.log(user)
+    if (initializing) {
+      setInitializing(false)
+    }
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="GetStarted" component={GetStartedScreen} />
@@ -55,7 +71,7 @@ const AppStack = observer(function AppStack() {
   )
 })
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()
