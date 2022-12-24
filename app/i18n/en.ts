@@ -10,6 +10,10 @@ const en = {
     readyForLaunch: "Your app, almost ready for launch!",
     exciting: "(ohh, this is exciting!)",
   },
+  getStarted: {
+    main: "Rent out your property\nthe easy way",
+    sub: "Abode matches you with the right tenants looking to rent a room or apartment like yours in a matter of days.",
+  },
   errorScreen: {
     title: "Something went wrong!",
     friendlySubtitle:

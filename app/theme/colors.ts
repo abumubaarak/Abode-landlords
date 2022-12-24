@@ -1,4 +1,3 @@
-
 const palette = {
   neutral100: "#FFFFFF",
   neutral200: "#F4F2F1",
@@ -10,16 +9,16 @@ const palette = {
   neutral800: "#191015",
   neutral900: "#000000",
 
-  primary50: '#ffe9df',
-  primary100: '#ffc4b1',
-  primary200: '#fd9f81',
-  primary300: '#fb7850',
-  primary400: '#f95320',
-  primary500: '#df3907',
-  primary600: '#af2c04',
-  primary700: '#7e1e02',
-  primary800: '#4d1100',
-  primary900: '#1f0300',
+  primary50: "#E48157",
+  primary100: "#e26b47",
+  primary200: "#c95f3f",
+  primary300: "#b05337",
+  primary400: "#97472f",
+  primary500: "#7e3c28",
+  primary600: "#643020",
+  primary700: "#4b2418",
+  primary800: "#321810",
+  primary900: "#190c08",
 
   secondary100: "#DCDDE9",
   secondary200: "#BCC0D6",
