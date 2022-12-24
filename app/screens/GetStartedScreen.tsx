@@ -1,10 +1,14 @@
-import React, { FC } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { ImageBackground, TextStyle, View, ViewStyle } from "react-native"
+import { ActivityIndicator, ImageBackground, TextStyle, View, ViewStyle } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { AppStackScreenProps } from "../navigators"
 import { Button, Screen, Text } from "../components"
 import { colors, spacing, typography } from "../theme"
+import { onGoogleButtonPress } from "../utils/firebase"
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 
@@ -19,13 +23,26 @@ import { colors, spacing, typography } from "../theme"
 // @ts-ignore
 export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStarted">> = observer(
   function GetStartedScreen() {
+    const [isLoading, setLoading] = useState<boolean>(false)
+
     const getStarted = require("../../assets/images/get-started.jpg")
 
-    // Pull in one of our MST stores
-    // const { someStore, anotherStore } = useStores()
+    const continueWithGoogle = () => {
+      setLoading(true)
+      onGoogleButtonPress().then(() => setLoading(false)).catch(() => setLoading(false))
+    }
+    useEffect(() => {
+      GoogleSignin.configure({
+        scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+        webClientId: '980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com',
+      });
+    }, [])
+    useEffect(() => {
+      if (auth().currentUser?.uid != null) {
+        //GO HOME
+      }
+    }, [auth().currentUser?.uid])
 
-    // Pull in navigation via hook
-    // const navigation = useNavigation()
     return (
       <Screen statusBarStyle="light" style={$root}>
         <View style={$topContainer}>
@@ -34,7 +51,9 @@ export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStar
         <View style={$bottomContainer}>
           <Text tx="getStarted.main" preset="heading" style={$labelHeading} />
           <Text tx="getStarted.sub" preset="default" style={$labelSubHeading} />
-          <Button text="Get Started" preset="filled" textStyle={$buttonLabel} style={$button} />
+          <Button LeftAccessory={(props) =>
+            isLoading && <ActivityIndicator animating={isLoading} size="small"
+              color={colors?.palette.primary300} />} text={!isLoading && "Get Started"} preset="filled" onPress={continueWithGoogle} textStyle={$buttonLabel} style={$button} />
         </View>
       </Screen>
     )
