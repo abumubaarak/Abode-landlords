@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "980427352092",
+    "project_id": "abode-41d86",
+    "storage_bucket": "abode-41d86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980427352092:android:1977d1d2eca8a30a83d7d9",
+        "android_client_info": {
+          "package_name": "com.app.abode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980427352092-rdcmv42pal2qc6jss9fnhh281ofevpuo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.abode",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1CLgbccIsD9nfh3YrLWjmJkv3jqLf3uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "980427352092-b6rjfhr9g9af7adfnunj0kpfj8vq3dk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.abodelandlords"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980427352092:android:3206463e36c41f9083d7d9",
+        "android_client_info": {
+          "package_name": "com.app.abodelandlords"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980427352092-ce3p3mhtp3s98tlcpjl0ocon5hqesj3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.abodelandlords",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1CLgbccIsD9nfh3YrLWjmJkv3jqLf3uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "980427352092-b6rjfhr9g9af7adfnunj0kpfj8vq3dk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.abodelandlords"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
