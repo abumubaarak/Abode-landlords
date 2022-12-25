@@ -6,6 +6,7 @@ import { AppStackScreenProps } from "../navigators"
 import { Button, Screen, Text } from "../components"
 import { colors, spacing, typography } from "../theme"
 import { onGoogleButtonPress } from "../utils/firebase"
+import { useNavigation } from "@react-navigation/native"
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -24,6 +25,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStarted">> = observer(
   function GetStartedScreen() {
     const [isLoading, setLoading] = useState<boolean>(false)
+    const navigation = useNavigation()
 
     const getStarted = require("../../assets/images/get-started.jpg")
 
@@ -37,11 +39,6 @@ export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStar
         webClientId: '980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com',
       });
     }, [])
-    useEffect(() => {
-      if (auth().currentUser?.uid != null) {
-        //GO HOME
-      }
-    }, [auth().currentUser?.uid])
 
     return (
       <Screen statusBarStyle="light" style={$root}>

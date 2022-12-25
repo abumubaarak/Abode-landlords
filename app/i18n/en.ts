@@ -14,6 +14,14 @@ const en = {
     main: "Rent out your property\nthe easy way",
     sub: "Abode matches you with the right tenants looking to rent a room or apartment like yours in a matter of days.",
   },
+  tabNavigator: {
+    inboxTab: "Inbox",
+    dashbordTab: "Dashboard",
+    paymentTab: "Payment",
+    tenantTab: "Tenant",
+    requestTab: "Request",
+    listingTab: "Listings",
+  },
   errorScreen: {
     title: "Something went wrong!",
     friendlySubtitle:
