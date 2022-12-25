@@ -14,6 +14,7 @@ import Config from "../config"
 import { GetStartedScreen } from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { HomeNavigator } from "./HomeNavigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -29,7 +30,8 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  GetStarted: undefined
+  GetStarted: undefined,
+  Home: undefined
   // 🔥 Your screens go here
 }
 
@@ -51,7 +53,6 @@ const AppStack = observer(function AppStack() {
   const [initializing, setInitializing] = useState(true);
 
   function onAuthStateChanged(user: FirebaseAuthTypes.User) {
-    console.log(user)
     if (initializing) {
       setInitializing(false)
     }
@@ -64,9 +65,17 @@ const AppStack = observer(function AppStack() {
 
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="GetStarted" component={GetStartedScreen} />
-      {/** 🔥 Your screens go here */}
+    <Stack.Navigator screenOptions={{ headerShown: false }}
+      initialRouteName={auth().currentUser?.uid ? "Home" : "GetStarted"} // @demo remove-current-line
+    >
+      {
+        auth().currentUser?.uid ?
+          <Stack.Screen name="Home" component={HomeNavigator} />
+
+          :
+          <Stack.Screen name="GetStarted" component={GetStartedScreen} />
+
+      }
     </Stack.Navigator>
   )
 })
