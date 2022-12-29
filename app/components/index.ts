@@ -17,3 +17,4 @@ export * from "./Toggle"
 
 export * from "./GalleryImage"
 export * from "./GalleryCallout"
+export * from "./Loader"
