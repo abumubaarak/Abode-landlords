@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* AbodeLandlordsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AbodeLandlordsTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-AbodeLandlords.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-AbodeLandlords.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2215ACBC1E62C44583DB69A9 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */; };
+		3E9D68F09E9D13B5454D657D /* Pods_AbodeLandlords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3ADFDA6DB53E06141CE1DBB /* Pods_AbodeLandlords.framework */; };
 		400EB2C1E1807E6CBC68B7AB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */; };
 		6EAC44E22957AF590038EC2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EAC44E12957AF580038EC2C /* GoogleService-Info.plist */; };
-		7699B88040F8A987B510C191 /* libPods-AbodeLandlords-AbodeLandlordsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AbodeLandlords-AbodeLandlordsTests.a */; };
 		BE406F562862D73000A81E39 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE406F552862D73000A81E39 /* BootSplash.storyboard */; };
+		C058F20BAF4A2EE0C1D01696 /* Pods_AbodeLandlords_AbodeLandlordsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2365C1FDB2FCAFA01EAA549B /* Pods_AbodeLandlords_AbodeLandlordsTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,14 +39,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AbodeLandlords/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AbodeLandlords/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AbodeLandlords/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-AbodeLandlords-AbodeLandlordsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AbodeLandlords-AbodeLandlordsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2365C1FDB2FCAFA01EAA549B /* Pods_AbodeLandlords_AbodeLandlordsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AbodeLandlords_AbodeLandlordsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-AbodeLandlords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbodeLandlords.debug.xcconfig"; path = "Target Support Files/Pods-AbodeLandlords/Pods-AbodeLandlords.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-AbodeLandlords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbodeLandlords.release.xcconfig"; path = "Target Support Files/Pods-AbodeLandlords/Pods-AbodeLandlords.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-AbodeLandlords-AbodeLandlordsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbodeLandlords-AbodeLandlordsTests.debug.xcconfig"; path = "Target Support Files/Pods-AbodeLandlords-AbodeLandlordsTests/Pods-AbodeLandlords-AbodeLandlordsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-AbodeLandlords.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AbodeLandlords.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EAC44E12957AF580038EC2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-AbodeLandlords-AbodeLandlordsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbodeLandlords-AbodeLandlordsTests.release.xcconfig"; path = "Target Support Files/Pods-AbodeLandlords-AbodeLandlordsTests/Pods-AbodeLandlords-AbodeLandlordsTests.release.xcconfig"; sourceTree = "<group>"; };
 		951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-AbodeLandlords/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		B3ADFDA6DB53E06141CE1DBB /* Pods_AbodeLandlords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AbodeLandlords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE406F552862D73000A81E39 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = AbodeLandlords/BootSplash.storyboard; sourceTree = "<group>"; };
 		D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-AbodeLandlords-AbodeLandlordsTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-AbodeLandlords-AbodeLandlordsTests.a in Frameworks */,
+				C058F20BAF4A2EE0C1D01696 /* Pods_AbodeLandlords_AbodeLandlordsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-AbodeLandlords.a in Frameworks */,
+				3E9D68F09E9D13B5454D657D /* Pods_AbodeLandlords.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,8 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-AbodeLandlords.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-AbodeLandlords-AbodeLandlordsTests.a */,
+				B3ADFDA6DB53E06141CE1DBB /* Pods_AbodeLandlords.framework */,
+				2365C1FDB2FCAFA01EAA549B /* Pods_AbodeLandlords_AbodeLandlordsTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

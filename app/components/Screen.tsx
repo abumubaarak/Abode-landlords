@@ -167,6 +167,7 @@ function ScreenWithScrolling(props: ScreenProps) {
     <ScrollView
       {...{ keyboardShouldPersistTaps, scrollEnabled, ref }}
       {...ScrollViewProps}
+      showsVerticalScrollIndicator={false}
       onLayout={(e) => {
         onLayout(e)
         ScrollViewProps?.onLayout?.(e)

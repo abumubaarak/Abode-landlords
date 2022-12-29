@@ -1,9 +1,11 @@
-import React, { FC } from "react"
-import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import { observer } from "mobx-react-lite"
+import React, { FC } from "react"
+import { ViewStyle } from "react-native"
+import { Button, Screen, Text } from "../components"
+import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
-import { Screen, Text } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 
@@ -16,18 +18,27 @@ import { Screen, Text } from "../components"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
-export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings">> = observer(function ListingsScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings">> = observer(
+  function ListingsScreen() {
+    // Pull in one of our MST stores
+    const {
+      propertyStoreModel: { reset },
+    } = useStores()
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
-  return (
-    <Screen style={$root} preset="scroll" safeAreaEdges={["top"]}>
-      <Text text="listings" />
-    </Screen>
-  )
-})
+    // Pull in navigation via hook
+    const navigation = useNavigation()
+    return (
+      <Screen style={$root} preset="scroll" safeAreaEdges={["top"]}>
+        <Text text="Listings" preset="subheading" />
+        <Button
+          text="Post listing"
+          onPress={() => navigation.navigate("AddListing", { screen: "AddListing" })}
+        />
+        <Button text="clear" onPress={() => reset()} />
+      </Screen>
+    )
+  },
+)
 
 const $root: ViewStyle = {
   flex: 1,
