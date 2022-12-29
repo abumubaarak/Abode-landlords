@@ -7,7 +7,8 @@ apply from: new File(["node", "--print", "require.resolve('@react-native-communi
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'
-
+include ':@react-native-firebase_storage'
+project(':@react-native-firebase_storage').projectDir = new File(rootProject.projectDir, './../node_modules/@react-native-firebase/storage/android')
 includeBuild('../node_modules/react-native-gradle-plugin')
 
 if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true") {

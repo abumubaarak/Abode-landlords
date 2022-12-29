@@ -4,6 +4,7 @@
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
  * and a "main" flow which the user will use once logged in.
  */
+import auth from "@react-native-firebase/auth"
 import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
@@ -11,10 +12,9 @@ import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
-import { GetStartedScreen } from "../screens"
-import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { AddListingScreen, AutoCompleteScreen, GetStartedScreen } from "../screens"
 import { HomeNavigator } from "./HomeNavigator"
+import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -30,8 +30,10 @@ import { HomeNavigator } from "./HomeNavigator"
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  GetStarted: undefined,
+  GetStarted: undefined
   Home: undefined
+  AddListing: undefined
+  AutoComplete: undefined
   // 🔥 Your screens go here
 }
 
@@ -50,37 +52,40 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
-  const [initializing, setInitializing] = useState(true);
+  const [initializing, setInitializing] = useState(true)
 
-  function onAuthStateChanged(user: FirebaseAuthTypes.User) {
+  function onAuthStateChanged() {
     if (initializing) {
       setInitializing(false)
     }
   }
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
+    return subscriber // unsubscribe on unmount
+  }, [])
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
       initialRouteName={auth().currentUser?.uid ? "Home" : "GetStarted"} // @demo remove-current-line
     >
-      {
-        auth().currentUser?.uid ?
+      {auth().currentUser?.uid ? (
+        <>
           <Stack.Screen name="Home" component={HomeNavigator} />
-
-          :
+          <Stack.Screen name="AddListing" component={AddListingScreen} />
+          <Stack.Screen name="AutoComplete" component={AutoCompleteScreen} />
+        </>
+      ) : (
+        <>
           <Stack.Screen name="GetStarted" component={GetStartedScreen} />
-
-      }
+        </>
+      )}
     </Stack.Navigator>
   )
 })
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()

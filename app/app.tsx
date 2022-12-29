@@ -10,6 +10,8 @@
  * if you're interested in adding screens and navigators.
  */
 import "./i18n"
+import { Provider as PaperProvider } from "react-native-paper"
+
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
 import React from "react"
@@ -105,11 +107,13 @@ function App(props: AppProps) {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ErrorBoundary catchErrors={Config.catchErrors}>
-        <AppNavigator
-          linking={linking}
-          initialState={initialNavigationState}
-          onStateChange={onNavigationStateChange}
-        />
+        <PaperProvider>
+          <AppNavigator
+            linking={linking}
+            initialState={initialNavigationState}
+            onStateChange={onNavigationStateChange}
+          />
+        </PaperProvider>
       </ErrorBoundary>
     </SafeAreaProvider>
   )

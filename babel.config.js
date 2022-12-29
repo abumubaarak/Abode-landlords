@@ -12,7 +12,9 @@ const plugins = [
 const vanillaConfig = {
   presets: ["module:metro-react-native-babel-preset"],
   env: {
-    production: {},
+    production: {
+      plugins: ['react-native-paper/babel'],
+    },
   },
   plugins,
 }
@@ -32,7 +34,7 @@ try {
   isExpo =
     Constants.executionEnvironment === "standalone" ||
     Constants.executionEnvironment === "storeClient"
-} catch {}
+} catch { }
 
 const babelConfig = isExpo ? expoConfig : vanillaConfig
 

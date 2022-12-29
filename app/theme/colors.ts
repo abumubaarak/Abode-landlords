@@ -9,6 +9,7 @@ const palette = {
   neutral800: "#191015",
   neutral900: "#000000",
 
+  primary20: "#ffede1",
   primary50: "#E48157",
   primary100: "#e26b47",
   primary200: "#c95f3f",
@@ -20,11 +21,11 @@ const palette = {
   primary800: "#321810",
   primary900: "#190c08",
 
-  secondary100: "#DCDDE9",
-  secondary200: "#BCC0D6",
-  secondary300: "#9196B9",
-  secondary400: "#626894",
-  secondary500: "#41476E",
+  secondary100: "#403f74",
+  secondary200: "#adacd3",
+  secondary300: "#8c8bc0",
+  secondary400: "#6c6aad",
+  secondary500: "#525194",
 
   accent100: "#FFEED4",
   accent200: "#FFE1B2",
@@ -78,6 +79,10 @@ export const colors = {
    * Error messages.
    */
   error: palette.angry500,
+
+  white: "#fff",
+  black: "#000",
+  lightgrey: "#dadada",
   /**
    * Error Background.
    *
