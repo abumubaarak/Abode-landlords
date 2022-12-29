@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
-import { Button, Icon, Screen, Text } from "../components"
+import { Button, Icon, Loader, Screen, Text } from "../components"
 import useProperty from "../hooks/useProperty"
 import useUpload from "../hooks/useUpload"
 import { useStores } from "../models"
@@ -37,6 +37,8 @@ export const AddListingScreen = observer(function AddListingScreen() {
 
   const [isValid, setIsValid] = useState<boolean>(false)
 
+  const [isLoading, setLoading] = useState<boolean>(false)
+
   const [count, setCount] = useState<number>(1)
 
   const navigationStateBatch = (position: string, index: number) => {
@@ -52,6 +54,7 @@ export const AddListingScreen = observer(function AddListingScreen() {
 
   useEffect(() => {
     if (uploaded) {
+      setLoading(false)
       navigation.goBack()
     }
   }, [uploaded])
@@ -69,6 +72,7 @@ export const AddListingScreen = observer(function AddListingScreen() {
   }, [isLocationFormValid, isPropertyFormValid, isMediaFormValid])
 
   const uploadImage = () => {
+    setLoading(true)
     localImages.map((i) => i !== "select" && upload(i))
   }
 
@@ -100,6 +104,8 @@ export const AddListingScreen = observer(function AddListingScreen() {
     }
   }
 
+  if (isLoading) return <Loader />
+
   return (
     <Screen
       contentContainerStyle={{ flex: 1 }}
@@ -107,6 +113,7 @@ export const AddListingScreen = observer(function AddListingScreen() {
       preset="fixed"
       safeAreaEdges={["bottom"]}
     >
+
       <View style={$steperContainer}>
         <Text text={`Step ${count}: ${type}`} style={$steper} />
         <View>
