@@ -1,15 +1,15 @@
 import { AntDesign, Feather } from "@expo/vector-icons"
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 import { TextStyle, ViewStyle } from "react-native"
-import { Icon } from "../components"
+
 import {
   DashboardScreen,
   InboxScreen,
   ListingsScreen,
   PaymentScreen,
-  RequestScreen,
+  RequestScreen
 } from "../screens"
 import { colors, spacing, typography } from "../theme"
 
@@ -17,16 +17,15 @@ export type HomeNavigatorParamList = {
   Dashboard: undefined
   Home: undefined
 }
-// const Tab = createBottomTabNavigator();
-const Tab = createMaterialBottomTabNavigator()
+const Tab = createBottomTabNavigator();
+//const Tab = createMaterialBottomTabNavigator()
 
 const Stack = createStackNavigator<HomeNavigatorParamList>()
 export const HomeNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Dashboard"
-      activeColor={colors.palette.primary400}
-      barStyle={$navigator}
+      screenOptions={{}}
     >
       <Tab.Screen
         name="Dashboard"
@@ -39,8 +38,10 @@ export const HomeNavigator = () => {
         name="Inbox"
         component={InboxScreen}
         options={{
-          tabBarIcon: ({ color }) => <Icon icon="inbox" color={color} />,
+          headerShown: false,
+          tabBarIcon: ({ color }) => <AntDesign name="barschart" size={24} color={color} />,
         }}
+
       />
       <Tab.Screen
         name="Listings"
