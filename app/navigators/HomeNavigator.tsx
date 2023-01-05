@@ -1,9 +1,9 @@
-import { AntDesign, Feather } from "@expo/vector-icons"
+import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 import { TextStyle, ViewStyle } from "react-native"
-
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 import {
   DashboardScreen,
   InboxScreen,
@@ -11,7 +11,7 @@ import {
   PaymentScreen,
   RequestScreen
 } from "../screens"
-import { colors, spacing, typography } from "../theme"
+import { colors, typography } from "../theme"
 
 export type HomeNavigatorParamList = {
   Dashboard: undefined
@@ -22,24 +22,51 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator<HomeNavigatorParamList>()
 export const HomeNavigator = () => {
+  const { bottom } = useSafeAreaInsets()
+
   return (
     <Tab.Navigator
       initialRouteName="Dashboard"
-      screenOptions={{}}
-    >
+      screenOptions={{
+        tabBarActiveTintColor: colors.black,
+        tabBarInactiveTintColor: colors.gray,
+        tabBarLabelStyle: $tabBarLabel,
+        tabBarItemStyle: $tabBarItem,
+        tabBarIconStyle: $tabIcon,
+        tabBarStyle: {
+          ...$tabBar,
+          height: bottom + 64,
+        },
+        headerShown: true,
+        headerTitleStyle: {
+          fontFamily: typography.primary.semiBold
+        },
+      }}    >
       <Tab.Screen
         name="Dashboard"
         component={DashboardScreen}
         options={{
-          tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
+          tabBarLabel: "Home",
+          tabBarIcon: ({ focused }) => (
+            <AntDesign
+              name="home"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
         }}
       />
       <Tab.Screen
         name="Inbox"
         component={InboxScreen}
         options={{
-          headerShown: false,
-          tabBarIcon: ({ color }) => <AntDesign name="barschart" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <AntDesign
+              name="message1"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
         }}
 
       />
@@ -47,79 +74,57 @@ export const HomeNavigator = () => {
         name="Listings"
         component={ListingsScreen}
         options={{
-          tabBarIcon: ({ color }) => <AntDesign name="profile" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <Octicons
+              name="list-unordered"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
         }}
       />
       <Tab.Screen
         name="Request"
         component={RequestScreen}
         options={{
-          tabBarIcon: ({ color }) => <AntDesign name="barschart" size={24} color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <AntDesign
+              name="user"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
         }}
       />
       <Tab.Screen
         name="Payment"
         component={PaymentScreen}
         options={{
-          tabBarIcon: ({ color }) => <AntDesign name="wallet" size={24} color={color} />,
+          tabBarIcon: ({ focused }) =>
+            <Ionicons name="ios-receipt-outline" size={22} color={focused ? colors.palette.primary50 : colors.gray50} />
         }}
       />
     </Tab.Navigator>
-    // <Tab.Navigator
-    //   screenOptions={{
-    //     headerShown: false,
-
-    //     tabBarHideOnKeyboard: true,
-    //     tabBarStyle: [$tabBar, { height: bottom + 70, borderTopColor: colors.separator }],
-    //     tabBarActiveTintColor: colors.text,
-    //     tabBarInactiveTintColor: colors.text,
-    //     tabBarLabelStyle: $tabBarLabel,
-    //     tabBarItemStyle: $tabBarItem,
-
-    //   }}
-    // >
-    //   <Tab.Screen name="Dashbord" component={DashboardScreen} options={{
-    //     tabBarLabel: translate("tabNavigator.dashbordTab"),
-    //     tabBarIcon: ({ focused }) => <Icon icon="inbox" color={focused && colors.tint} />,
-    //   }} />
-    //   <Tab.Screen name="Inbox" component={InboxScreen}
-    //     options={{
-    //       tabBarLabel: translate("tabNavigator.inboxTab"),
-    //       tabBarIcon: ({ focused }) => <Icon icon="inbox" color={focused && colors.tint} />,
-    //     }} />
-    //   <Tab.Screen name="Listings" component={ListingsScreen} options={{
-    //     tabBarLabel: translate("tabNavigator.listingTab"),
-    //     tabBarIcon: ({ focused }) => <Icon icon="inbox" color={focused && colors.tint} />,
-    //   }} />
-    //   <Tab.Screen name="Request" component={RequestScreen} options={{
-    //     tabBarLabel: translate("tabNavigator.tenantTab"),
-    //     tabBarIcon: ({ focused }) => <Icon icon="inbox" color={focused && colors.tint} />,
-    //   }} />
-    //   <Tab.Screen name="Payment" component={PaymentScreen} options={{
-    //     tabBarLabel: translate("tabNavigator.paymentTab"),
-    //     tabBarIcon: ({ focused }) => <Icon icon="inbox" color={focused && colors.tint} />,
-    //   }} />
-    // </Tab.Navigator>
   )
 }
+
 const $tabBar: ViewStyle = {
-  backgroundColor: colors.background,
-  borderTopColor: colors.transparent,
+  backgroundColor: colors.white,
+  elevation: 0,
+  borderTopColor: colors.lightgrey,
+  borderTopWidth: 1,
 }
 
 const $tabBarItem: ViewStyle = {
-  paddingTop: spacing.medium,
+  paddingTop: 10,
 }
 
 const $tabBarLabel: TextStyle = {
-  fontSize: 12,
-  fontFamily: typography.primary.medium,
-  lineHeight: 16,
+  fontSize: 9.8,
+  fontFamily: typography.primary.normal,
   flex: 1,
+  paddingTop: 8,
 }
-
-const $navigator = {
-  backgroundColor: colors.transparent,
-  borderTopColor: colors.separator,
-  borderTopWidth: 0.3,
+const $tabIcon: TextStyle = {
+  color: colors.lightgrey,
 }

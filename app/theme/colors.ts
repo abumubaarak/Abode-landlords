@@ -82,7 +82,11 @@ export const colors = {
 
   white: "#fff",
   black: "#000",
-  lightgrey: "#dadada",
+  lightgrey: "#e1e1e1",
+  gray: "#959595",
+  gray50: "#c6c6c6",
+  gray100: "#636167",
+
   /**
    * Error Background.
    *
