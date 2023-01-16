@@ -3,11 +3,8 @@ import firestore, { FirebaseFirestoreTypes } from "@react-native-firebase/firest
 import { WhereFilterOp } from "firebase/firestore"
 import { useState } from "react"
 import { REQUEST } from "../utils/firebase"
-type RentRequestI = {
-  lid: string
-  uid: string
-  pId: string
-}
+
+
 const useFirestore = () => {
   const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData[]>([])
   const [document, setDocument] = useState<FirebaseFirestoreTypes.DocumentData>()
@@ -50,25 +47,29 @@ const useFirestore = () => {
     }
   }
 
-  const query = async (
-    path: string,
-    value: string
-  ) => {
-    setLoading(true)
-    const collection = await firestore()
-      .collection(REQUEST)
-      .where(path, "==", value)
-      .get()
-    const newData = collection.docs.map((doc) => ({ ...doc.data() }))
+  function onResult(QuerySnapshot) {
+    const newData = QuerySnapshot.docs.map((doc) => ({ ...doc.data() }))
     setData(newData)
     if (data) {
       setLoading(false)
     }
   }
 
+  function onError(error) {
+    console.error(error)
+  }
+
+  const tenantRequest = async (path: string, value: string) => {
+    setLoading(true)
+    await firestore()
+      .collection(REQUEST)
+      .where(path, "==", value)
+      .where("status", "==", "pending")
+      .onSnapshot(onResult, onError)
+  }
 
   return {
-    query,
+    tenantRequest,
     getCollection,
     data,
     isLoading,

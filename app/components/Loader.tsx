@@ -1,4 +1,4 @@
-import Lottie from 'lottie-react-native'
+import Lottie from "lottie-react-native"
 import { observer } from "mobx-react-lite"
 import * as React from "react"
 import { StyleProp, View, ViewStyle } from "react-native"
@@ -14,10 +14,15 @@ export interface LoaderProps {
  * Describe your component here
  */
 export const Loader = observer(function Loader(_: LoaderProps) {
-
   return (
     <View style={$container}>
-      <Lottie style={$lottie} source={require('../../assets/lottie/loader.json')} autoSize autoPlay loop />
+      <Lottie
+        style={$lottie}
+        source={require("../../assets/lottie/loader.json")}
+        autoSize
+        autoPlay
+        loop
+      />
     </View>
   )
 })
@@ -25,10 +30,10 @@ export const Loader = observer(function Loader(_: LoaderProps) {
 const $container: ViewStyle = {
   flex: 1,
   justifyContent: "center",
-  alignItems: "center"
+  alignItems: "center",
 }
 
 const $lottie: ViewStyle = {
   width: 120,
-  height: 120
+  height: 120,
 }

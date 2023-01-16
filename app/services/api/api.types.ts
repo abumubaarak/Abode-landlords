@@ -20,6 +20,40 @@ export interface EpisodeItem {
   }
   categories: string[]
 }
+export type BaseResponse<T> = {
+  success: boolean
+  data: T[]
+}
+export type Messages = {
+  tenant_id: string
+  tenant_name: string
+  landlord_name: string
+  landlord_id: string
+  message: string
+  property_id: string
+  sentAt: string
+  __v: number
+  _id: string
+}
+export type Conversations = {
+  tenant_id: string
+  landlord_id: string
+  message: string
+  message_id: string
+  sender: string
+  sentAt: string
+  __v: number
+  _id: string
+}
+
+export type ChatMessage = {
+  _id: string
+  text: string
+  createdAt: Date
+  user: {
+    _id: string
+  }
+}
 
 export interface ApiFeedResponse {
   status: string

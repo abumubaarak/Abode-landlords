@@ -11,7 +11,7 @@ import {
   amenitiesGroupThree,
   amenitiesGroupTwo,
   houseRules,
-  propertyTypeOptions
+  propertyTypeOptions,
 } from "../data"
 import { useStores } from "../models"
 import { colors } from "../theme"

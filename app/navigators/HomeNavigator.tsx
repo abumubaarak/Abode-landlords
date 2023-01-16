@@ -1,5 +1,5 @@
 import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons"
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 import { TextStyle, ViewStyle } from "react-native"
@@ -9,7 +9,7 @@ import {
   InboxScreen,
   ListingsScreen,
   PaymentScreen,
-  RequestScreen
+  RequestScreen,
 } from "../screens"
 import { colors, typography } from "../theme"
 
@@ -17,8 +17,8 @@ export type HomeNavigatorParamList = {
   Dashboard: undefined
   Home: undefined
 }
-const Tab = createBottomTabNavigator();
-//const Tab = createMaterialBottomTabNavigator()
+const Tab = createBottomTabNavigator()
+// const Tab = createMaterialBottomTabNavigator()
 
 const Stack = createStackNavigator<HomeNavigatorParamList>()
 export const HomeNavigator = () => {
@@ -39,9 +39,10 @@ export const HomeNavigator = () => {
         },
         headerShown: true,
         headerTitleStyle: {
-          fontFamily: typography.primary.semiBold
+          fontFamily: typography.primary.medium,
         },
-      }}    >
+      }}
+    >
       <Tab.Screen
         name="Dashboard"
         component={DashboardScreen}
@@ -68,7 +69,6 @@ export const HomeNavigator = () => {
             />
           ),
         }}
-
       />
       <Tab.Screen
         name="Listings"
@@ -100,8 +100,13 @@ export const HomeNavigator = () => {
         name="Payment"
         component={PaymentScreen}
         options={{
-          tabBarIcon: ({ focused }) =>
-            <Ionicons name="ios-receipt-outline" size={22} color={focused ? colors.palette.primary50 : colors.gray50} />
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="ios-receipt-outline"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
         }}
       />
     </Tab.Navigator>

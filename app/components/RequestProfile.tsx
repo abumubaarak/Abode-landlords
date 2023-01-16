@@ -1,47 +1,67 @@
 import { observer } from "mobx-react-lite"
-import React, { memo, useEffect } from "react"
+import React, { memo } from "react"
 import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
-import useFirestore from "../hooks/useFirestore"
 import { colors, spacing, typography } from "../theme"
 import { avatarName } from "../utils"
-import { USERS } from "../utils/firebase"
 import { Text } from "./Text"
 
 export interface RequestProfileProps {
   /**
    * An optional style override useful for padding & margin.
    */
-  style?: StyleProp<ViewStyle>,
-  uid: string
+  style?: StyleProp<ViewStyle>
+  name: string
 }
 
 /**
  * Describe your component here
  */
 const RequestProfile = observer(function RequestProfile(props: RequestProfileProps) {
-  const { style, uid } = props
-  const { getDocument, document } = useFirestore()
+  const { style, name } = props
 
-  useEffect(() => {
-    getDocument(USERS, uid)
-  }, [])
   return (
     <View style={{ marginVertical: spacing.large, alignItems: "center" }}>
-      <View style={{ alignItems: "center", justifyContent: "center", borderRadius: 100, backgroundColor: colors.palette.primary100, width: 100, height: 100 }}>
-        <Text style={{ fontSize: 40, lineHeight: 50, color: colors.white, paddingTop: 5 }} text={avatarName(document?.displayName)} />
+      <View
+        style={$container}
+      >
+        <Text
+          style={$avatarLabel}
+          text={avatarName(name)}
+        />
       </View>
-      <Text text={document?.displayName} style={{ fontFamily: typography.primary.semiBold, paddingTop: spacing.medium }} />
-      <Text text="Tenant" style={{ fontFamily: typography.primary.normal, opacity: 0.4, fontSize: 14 }} />
+      <Text
+        text={name}
+        style={$label}
+      />
+      <Text
+        text="Tenant"
+        style={$tenant}
+      />
     </View>
   )
 })
 
 export default memo(RequestProfile)
 const $container: ViewStyle = {
+  alignItems: "center",
   justifyContent: "center",
+  borderRadius: 100,
+  backgroundColor: colors.palette.primary100,
+  width: 100,
+  height: 100,
 }
-const $text: TextStyle = {
+const $avatarLabel: TextStyle = {
+  fontSize: 40,
+  lineHeight: 50,
+  color: colors.white,
+  paddingTop: 5
+}
+const $label: TextStyle = {
+  fontFamily: typography.primary.semiBold,
+  paddingTop: spacing.medium
+}
+
+const $tenant: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 14,
-  color: colors.palette.primary500,
+  opacity: 0.4, fontSize: 14
 }

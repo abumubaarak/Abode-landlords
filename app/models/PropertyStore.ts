@@ -75,7 +75,7 @@ export const PropertyStoreModel = types
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({
     reset() {
-      (self.name = ""),
+      ;(self.name = ""),
         (self.city = ""),
         (self.address = ""),
         (self.propertySize = undefined),
@@ -144,7 +144,7 @@ export const PropertyStoreModel = types
     },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
-export interface PropertyStore extends Instance<typeof PropertyStoreModel> { }
-export interface PropertyStoreSnapshotOut extends SnapshotOut<typeof PropertyStoreModel> { }
-export interface PropertyStoreSnapshotIn extends SnapshotIn<typeof PropertyStoreModel> { }
+export interface PropertyStore extends Instance<typeof PropertyStoreModel> {}
+export interface PropertyStoreSnapshotOut extends SnapshotOut<typeof PropertyStoreModel> {}
+export interface PropertyStoreSnapshotIn extends SnapshotIn<typeof PropertyStoreModel> {}
 export const createPropertyStoreDefaultModel = () => types.optional(PropertyStoreModel, {})

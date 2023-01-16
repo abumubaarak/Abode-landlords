@@ -1,36 +1,51 @@
-import React, { FC } from "react"
-import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
+import { useIsFocused } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import { ContentStyle, FlashList } from "@shopify/flash-list"
+import { observer } from "mobx-react-lite"
+import React, { FC, useEffect } from "react"
+import { View, ViewStyle } from "react-native"
+import { Loader } from "../components"
+import MessageItem from "../components/MessageItem"
+import useApi from "../hooks/useApi"
 import { AppStackScreenProps } from "../navigators"
-import { Screen, Text } from "../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
-
-// STOP! READ ME FIRST!
-// To fix the TS error below, you'll need to add the following things in your navigation config:
-// - Add `Inbox: undefined` to AppStackParamList
-// - Import your screen, and add it to the stack:
-//     `<Stack.Screen name="Inbox" component={InboxScreen} />`
-// Hint: Look for the 🔥!
+import { colors, spacing } from "../theme"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
 export const InboxScreen: FC<StackScreenProps<AppStackScreenProps, "Inbox">> = observer(
   function InboxScreen() {
-    // Pull in one of our MST stores
-    // const { someStore, anotherStore } = useStores()
+    const isFocused = useIsFocused()
 
-    // Pull in navigation via hook
-    // const navigation = useNavigation()
+    const { getMessageList, messages, isLoading } = useApi()
+
+    useEffect(() => {
+      getMessageList()
+    }, [isFocused])
+
+    if (isLoading) return <Loader />
+
     return (
-      <Screen style={$root} preset="scroll" safeAreaEdges={["top"]}>
-        <Text text="inbox" />
-      </Screen>
+      <View style={$root}>
+        <FlashList
+          data={messages?.data}
+          contentContainerStyle={$listRoot}
+          ItemSeparatorComponent={() => <View style={$separator} />}
+          renderItem={({ item }) => <MessageItem data={item} />}
+          estimatedItemSize={200}
+        />
+      </View>
     )
   },
 )
 
 const $root: ViewStyle = {
+  backgroundColor: colors.white,
   flex: 1,
+}
+
+const $listRoot: ContentStyle = {
+  paddingTop: spacing.small,
+}
+const $separator: ViewStyle = {
+  height: spacing.medium,
 }
