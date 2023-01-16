@@ -12,7 +12,12 @@ import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
-import { AddListingScreen, AutoCompleteScreen, GetStartedScreen } from "../screens"
+import {
+  AddListingScreen,
+  AutoCompleteScreen,
+  ConversationScreen,
+  GetStartedScreen,
+} from "../screens"
 import { HomeNavigator } from "./HomeNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
@@ -34,6 +39,7 @@ export type AppStackParamList = {
   Home: undefined
   AddListing: undefined
   AutoComplete: undefined
+  Conversation: { message_id: string; tenant_id: string; landlord_id: string }
   // 🔥 Your screens go here
 }
 
@@ -75,6 +81,11 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="Home" component={HomeNavigator} />
           <Stack.Screen name="AddListing" component={AddListingScreen} />
           <Stack.Screen name="AutoComplete" component={AutoCompleteScreen} />
+          <Stack.Screen
+            name="Conversation"
+            component={ConversationScreen}
+            options={{ headerShown: true, animation: "slide_from_right" }}
+          />
         </>
       ) : (
         <>
@@ -85,7 +96,7 @@ const AppStack = observer(function AppStack() {
   )
 })
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()

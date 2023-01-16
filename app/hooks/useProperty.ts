@@ -27,10 +27,11 @@ const useProperty = () => {
   const [error, setError] = useState<boolean>()
 
   const uploadPropertyData = () => {
-    firestore()
-      .collection("Property")
-      .add({
+    const collection = firestore().collection("Property").doc()
+    collection
+      .set({
         name,
+        id: collection.id,
         city,
         address,
         propertySize,

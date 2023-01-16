@@ -113,7 +113,6 @@ export const AddListingScreen = observer(function AddListingScreen() {
       preset="fixed"
       safeAreaEdges={["bottom"]}
     >
-
       <View style={$steperContainer}>
         <Text text={`Step ${count}: ${type}`} style={$steper} />
         <View>
