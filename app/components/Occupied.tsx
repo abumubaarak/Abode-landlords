@@ -5,9 +5,9 @@ import { useEffect } from "react"
 import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import useFirestore from "../hooks/useFirestore"
 import { colors, spacing, typography } from "../theme"
-import { USERS } from "../utils/firebase"
 import { Loader } from "./Loader"
 import { Text } from "./Text"
+import { UserLabel } from "./UserLabel"
 
 export interface OccupiedProps {
   /**
@@ -30,11 +30,6 @@ export const Occupied = observer(function Occupied(props: OccupiedProps) {
     queryDocument("Payments", "property_id", propertyId)
   }, [])
 
-  useEffect(() => {
-    getDocument(USERS, data[0]?.tenant_id)
-  }, [data[0]?.tenant_id])
-
-
   const paidOn: Date = data[0]?.created.toDate()
 
   const nextDue = addYears(paidOn, 1)
@@ -48,7 +43,7 @@ export const Occupied = observer(function Occupied(props: OccupiedProps) {
       style={$container}
     >
       <Text text="Occupied By" style={$header} />
-      <Text text={document?.displayName} style={$label} />
+      <UserLabel tenant_id={data[0]?.tenant_id} />
       <Text text="Next Payment On" style={$header} />
       <Text text={nextDueYear} style={$label} />
 

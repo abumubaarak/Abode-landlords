@@ -1,36 +1,49 @@
-import React, { FC } from "react"
-import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import { ContentStyle, FlashList } from "@shopify/flash-list"
+import { observer } from "mobx-react-lite"
+import React, { FC, useEffect } from "react"
+import { View, ViewStyle } from "react-native"
+import { Empty, Loader } from "../components"
+import { PaymentItem } from "../components/PaymentItem"
+import useFirestore from "../hooks/useFirestore"
+import useUser from "../hooks/useUser"
 import { AppStackScreenProps } from "../navigators"
-import { Screen, Text } from "../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
+import { spacing } from "../theme"
 
-// STOP! READ ME FIRST!
-// To fix the TS error below, you'll need to add the following things in your navigation config:
-// - Add `Payment: undefined` to AppStackParamList
-// - Import your screen, and add it to the stack:
-//     `<Stack.Screen name="Payment" component={PaymentScreen} />`
-// Hint: Look for the 🔥!
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
 export const PaymentScreen: FC<StackScreenProps<AppStackScreenProps, "Payment">> = observer(
   function PaymentScreen() {
-    // Pull in one of our MST stores
-    // const { someStore, anotherStore } = useStores()
+    const { isFocused } = useNavigation()
+    const { uid } = useUser()
+    const { queryDocument, data, isLoading } = useFirestore()
 
-    // Pull in navigation via hook
-    // const navigation = useNavigation()
+
+    useEffect(() => {
+      queryDocument("Payments", "landlord_id", uid)
+    }, [isFocused])
+
+    if (isLoading) return <Loader />
+    if (data.length === 0) return <Empty message="No Payment." />
+
     return (
-      <Screen style={$root} preset="scroll" safeAreaEdges={["top"]}>
-        <Text text="payment" />
-      </Screen>
+      <FlashList
+        data={data}
+        contentContainerStyle={$root}
+        ItemSeparatorComponent={() => <View style={$separator} />}
+        renderItem={({ item }) => <PaymentItem item={item} />}
+        estimatedItemSize={200}
+      />
     )
   },
 )
 
-const $root: ViewStyle = {
-  flex: 1,
+const $root: ContentStyle = {
+  paddingTop: spacing.tiny,
+  paddingHorizontal: spacing.small,
+}
+const $separator: ViewStyle = {
+  height: spacing.medium,
 }
