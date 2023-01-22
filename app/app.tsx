@@ -9,21 +9,21 @@
  * The app navigation resides in ./app/navigators, so head over there
  * if you're interested in adding screens and navigators.
  */
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet"
 import "./i18n"
-import { Provider as PaperProvider } from "react-native-paper"
 
-import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
+import * as Linking from "expo-linking"
 import React from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
-import * as Linking from "expo-linking"
+import Config from "./config"
 import { useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
-import * as storage from "./utils/storage"
-import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
-import Config from "./config"
+import { customFontsToLoad } from "./theme"
+import "./utils/ignoreWarnings"
+import * as storage from "./utils/storage"
 
 // Set up Reactotron, which is a free desktop app for inspecting and debugging
 // React Native apps. Learn more here: https://github.com/infinitered/reactotron
@@ -107,13 +107,13 @@ function App(props: AppProps) {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ErrorBoundary catchErrors={Config.catchErrors}>
-        <PaperProvider>
+        <BottomSheetModalProvider>
           <AppNavigator
             linking={linking}
             initialState={initialNavigationState}
             onStateChange={onNavigationStateChange}
           />
-        </PaperProvider>
+        </BottomSheetModalProvider>
       </ErrorBoundary>
     </SafeAreaProvider>
   )

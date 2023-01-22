@@ -27,3 +27,4 @@ export * from "./TextField"
 export * from "./Toggle"
 
 export * from "./Occupied"
+export * from "./UserLabel"
