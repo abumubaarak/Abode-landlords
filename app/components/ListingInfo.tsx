@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite"
 import React, { memo, useEffect } from "react"
-import { Image, ImageStyle, StyleProp, TextStyle, View, ViewStyle } from "react-native"
+import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 import useFirestore from "../hooks/useFirestore"
 import { colors, typography } from "../theme"
 import { PROPERTY } from "../utils/firebase"
@@ -34,9 +35,12 @@ const ListingInfo = observer(function ListingInfo(props: ListingInfoProps) {
         style={$applied}
       />
       <View style={$infoContainer}>
-        <Image
-          resizeMode="center"
-          source={{ uri: document?.remoteImages[0] }}
+        <FastImage
+          source={{
+            uri: document?.remoteImages[0],
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.contain}
           style={$image}
         />
         <View style={$infoDetailsContainer}>
