@@ -1,17 +1,18 @@
 import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { useNavigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
-import { TextStyle, ViewStyle } from "react-native"
+import { Pressable, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import {
   DashboardScreen,
   InboxScreen,
   ListingsScreen,
   PaymentScreen,
-  RequestScreen,
+  RequestScreen
 } from "../screens"
-import { colors, typography } from "../theme"
+import { colors, spacing, typography } from "../theme"
 
 export type HomeNavigatorParamList = {
   Dashboard: undefined
@@ -23,6 +24,7 @@ const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator<HomeNavigatorParamList>()
 export const HomeNavigator = () => {
   const { bottom } = useSafeAreaInsets()
+  const navigation = useNavigation()
 
   return (
     <Tab.Navigator
@@ -81,6 +83,13 @@ export const HomeNavigator = () => {
               color={focused ? colors.palette.primary50 : colors.gray50}
             />
           ),
+          headerRight: () => (
+            <Pressable onPress={() => navigation.navigate("AddListing", { screen: "AddListing" })}>
+              <View style={{ marginRight: spacing.tiny }}>
+                <Ionicons name="add-circle-outline" size={27} color={colors.palette.primary100} />
+              </View>
+            </Pressable>
+          )
         }}
       />
       <Tab.Screen

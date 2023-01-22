@@ -16,8 +16,10 @@ import {
   AddListingScreen,
   AutoCompleteScreen,
   ConversationScreen,
-  GetStartedScreen,
+  GetStartedScreen
 } from "../screens"
+import { ListingDetailsScreen } from "../screens/ListingDetailsScreen"
+import { colors } from "../theme"
 import { HomeNavigator } from "./HomeNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
@@ -39,6 +41,7 @@ export type AppStackParamList = {
   Home: undefined
   AddListing: undefined
   AutoComplete: undefined
+  ListingDetails: { id: string }
   Conversation: { message_id: string; tenant_id: string; landlord_id: string }
   // 🔥 Your screens go here
 }
@@ -86,6 +89,18 @@ const AppStack = observer(function AppStack() {
             component={ConversationScreen}
             options={{ headerShown: true, animation: "slide_from_right" }}
           />
+          <Stack.Screen
+            name="ListingDetails"
+            options={{
+              headerShown: true,
+              animation: "slide_from_right",
+              headerTransparent: true,
+              headerTitle: "",
+              headerBackTitleVisible: false,
+              headerTintColor: colors.black,
+            }}
+            component={ListingDetailsScreen}
+          />
         </>
       ) : (
         <>
@@ -96,7 +111,7 @@ const AppStack = observer(function AppStack() {
   )
 })
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()

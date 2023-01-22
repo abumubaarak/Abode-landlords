@@ -1,5 +1,6 @@
 export * from "./AddListingScreen"
 export * from "./AutoCompleteScreen"
+export * from "./ConversationScreen"
 export * from "./DashboardScreen"
 export * from "./ErrorScreen/ErrorBoundary"
 // export other screens here
@@ -12,4 +13,3 @@ export * from "./ProfileScreen"
 export * from "./PropertyInfoScreen"
 export * from "./PropertyMediaScreen"
 export * from "./RequestScreen"
-export * from "./ConversationScreen"

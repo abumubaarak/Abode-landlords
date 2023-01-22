@@ -85,6 +85,13 @@ export const amenitiesGroupThree = [
     icon: <MaterialCommunityIcons name="air-conditioner" size={ICON_SIZE} color="black" />,
   },
 ]
+
+export const AMENITIES = [
+  ...amenitiesGroupOne,
+  ...amenitiesGroupTwo,
+  ...amenitiesGroupThree,
+
+]
 export const propertyTypeOptions = [
   { label: "Room", value: "room" },
   { label: "Apartment", value: "apartment" },
