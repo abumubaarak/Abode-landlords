@@ -22,7 +22,7 @@ export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings"
 
     useEffect(() => {
       if (uid) {
-        queryDocument(PROPERTY)
+        queryDocument(PROPERTY, "uid", uid)
       }
     }, [])
 
@@ -47,3 +47,4 @@ const $root: ViewStyle = {
 const $separator: ViewStyle = {
   height: spacing.medium,
 }
+
