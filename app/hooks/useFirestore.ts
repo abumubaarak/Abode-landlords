@@ -1,4 +1,3 @@
-import auth from "@react-native-firebase/auth"
 import firestore, { FirebaseFirestoreTypes } from "@react-native-firebase/firestore"
 import { useState } from "react"
 import { REQUEST } from "../utils/firebase"
@@ -29,12 +28,13 @@ const useFirestore = () => {
   }
   const queryDocument = async (
     collectionPath: string,
-
+    path: string,
+    value: string
   ) => {
     setLoading(true)
     const collection = await firestore()
       .collection(collectionPath)
-      .where("uid", "==", auth().currentUser.uid)
+      .where(path, "==", value)
       .get()
     const newData = collection.docs.map((doc) => ({ ...doc.data() }))
     setData(newData)
@@ -76,3 +76,4 @@ const useFirestore = () => {
 }
 
 export default useFirestore
+

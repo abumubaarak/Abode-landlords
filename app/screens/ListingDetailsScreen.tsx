@@ -1,16 +1,15 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native"
+import { RouteProp, useRoute } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect, useState } from "react"
 import { Dimensions, TextStyle, View, ViewStyle } from "react-native"
 import FastImage, { ImageStyle } from "react-native-fast-image"
 import { Carousel, Pagination } from "react-native-snap-carousel"
-import { ListingTag, Screen, Text } from "../components"
+import { ListingTag, Occupied, Screen, Text } from "../components"
 import LisitingFeaturesTag from "../components/LisitingFeaturesTag"
 import { Loader } from "../components/Loader"
 import useFirestore from "../hooks/useFirestore"
-import useUser from "../hooks/useUser"
 import { AppStackParamList, AppStackScreenProps } from "../navigators"
 import { colors, typography } from "../theme"
 import { PROPERTY } from "../utils/firebase"
@@ -19,25 +18,15 @@ import { PROPERTY } from "../utils/firebase"
 // @ts-ignore
 export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "ListingDetails">> =
   observer(function ListingDetailsScreen() {
-    const navigation = useNavigation()
     const sliderWidth = Dimensions.get("window").width
     const route = useRoute<RouteProp<AppStackParamList, "ListingDetails">>()
     const params = route.params
     const { getDocument, document, isLoading } = useFirestore()
-    const { queryDocument, data: userWishList, isLoading: wishlistIsLoading } = useFirestore()
-    const {
-      queryDocument: queryRequest,
-      data: requestResponse,
-      isLoading: requestIsLoading,
-    } = useFirestore()
-    const { displayName, uid, email } = useUser()
     const [activeSlide, setActiveSlide] = useState<number>(0)
-    const [applied, setApplied] = useState<boolean>(false)
 
     useEffect(() => {
       getDocument(PROPERTY, params.id)
     }, [])
-
 
     if (isLoading) return <Loader />
 
@@ -102,10 +91,18 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
                   }
                 />
               </View>
-              <View style={$priceContainer}>
-                <Text text={`$${document?.cost}`} style={$priceLabel} />
-                <Text style={$pricePer} text="/year" />
+              <View style={$saContainer}>
+                <View style={$priceContainer}>
+                  <Text text={`$${document?.cost}`} style={$priceLabel} />
+                  <Text style={$pricePer} text="/year" />
+                </View>
+                <View style={$statusTagContainer}>
+                  <Text text={document?.status} style={$statusTag} />
+                </View>
               </View>
+
+              {document?.status === "paid" && <Occupied propertyId={document?.id} />}
+
             </View>
 
             <Text text="Description" style={$label} />
@@ -134,7 +131,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.white,
 }
 const $contentContainer: ViewStyle = {
   flexBasis: "90%",
@@ -208,16 +204,29 @@ const $tagContainer: TextStyle = {
   paddingVertical: 2,
 }
 const $priceContainer: ViewStyle = {
-  flexDirection: "row",
-  paddingTop: 10,
+  flexDirection: "row"
 }
-
+const $saContainer: ViewStyle = {
+  flexDirection: "row",
+  alignItems: "center",
+  paddingTop: 10
+}
 const $priceLabel: TextStyle = {
   color: colors.palette.primary100,
   fontSize: 19,
   fontFamily: typography.primary.semiBold,
 }
-
+const $statusTagContainer: ViewStyle = {
+  borderRadius: 5,
+  backgroundColor: colors.palette.secondary100,
+  marginLeft: 8
+}
+const $statusTag: TextStyle = {
+  fontSize: 13,
+  color: colors.white,
+  paddingHorizontal: 5,
+  fontFamily: typography.primary.normal
+}
 const $pricePer: TextStyle = {
   fontSize: 14,
   color: colors.gray,
@@ -234,3 +243,4 @@ const $button: ViewStyle = {
   borderRadius: 30,
   backgroundColor: colors.palette.primary50,
 }
+
