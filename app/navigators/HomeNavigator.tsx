@@ -6,7 +6,6 @@ import React from "react"
 import { Pressable, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import {
-  DashboardScreen,
   InboxScreen,
   ListingsScreen,
   PaymentScreen,
@@ -15,7 +14,6 @@ import {
 import { colors, spacing, typography } from "../theme"
 
 export type HomeNavigatorParamList = {
-  Dashboard: undefined
   Home: undefined
 }
 const Tab = createBottomTabNavigator()
@@ -28,7 +26,7 @@ export const HomeNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="Dashboard"
+      initialRouteName="Listings"
       screenOptions={{
         tabBarActiveTintColor: colors.black,
         tabBarInactiveTintColor: colors.gray,
@@ -45,33 +43,6 @@ export const HomeNavigator = () => {
         },
       }}
     >
-      <Tab.Screen
-        name="Dashboard"
-        component={DashboardScreen}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ focused }) => (
-            <AntDesign
-              name="home"
-              size={22}
-              color={focused ? colors.palette.primary50 : colors.gray50}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Inbox"
-        component={InboxScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <AntDesign
-              name="message1"
-              size={22}
-              color={focused ? colors.palette.primary50 : colors.gray50}
-            />
-          ),
-        }}
-      />
       <Tab.Screen
         name="Listings"
         component={ListingsScreen}
@@ -105,6 +76,20 @@ export const HomeNavigator = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="Inbox"
+        component={InboxScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <AntDesign
+              name="message1"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
+        }}
+      />
+
       <Tab.Screen
         name="Payment"
         component={PaymentScreen}

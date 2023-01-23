@@ -16,7 +16,6 @@ const en = {
   },
   tabNavigator: {
     inboxTab: "Inbox",
-    dashbordTab: "Dashboard",
     paymentTab: "Payment",
     tenantTab: "Tenant",
     requestTab: "Request",
