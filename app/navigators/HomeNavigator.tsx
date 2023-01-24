@@ -9,6 +9,7 @@ import {
   InboxScreen,
   ListingsScreen,
   PaymentScreen,
+  ProfileScreen,
   RequestScreen
 } from "../screens"
 import { colors, spacing, typography } from "../theme"
@@ -97,6 +98,20 @@ export const HomeNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="ios-receipt-outline"
+              size={22}
+              color={focused ? colors.palette.primary50 : colors.gray50}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="person-outline"
               size={22}
               color={focused ? colors.palette.primary50 : colors.gray50}
             />
