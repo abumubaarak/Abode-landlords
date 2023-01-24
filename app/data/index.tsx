@@ -98,3 +98,31 @@ export const propertyTypeOptions = [
   { label: "Duplex", value: "duplex" },
   { label: "Loft", value: "loft" },
 ]
+
+export const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+export const LANGUAGES = [
+  { name: "English" },
+  { name: "French" },
+  { name: "Italian" },
+  { name: "German" },
+  { name: "Arabic" },
+  { name: "Yoruba" },
+  { name: "Hausa" },
+  { name: "Japanese" },
+  { name: "Spanish" },
+  { name: "Chinese" },
+]
+export const GENDER = [{ name: "Male" }, { name: "Female" }]
