@@ -1,6 +1,7 @@
 import firestore, { FirebaseFirestoreTypes } from "@react-native-firebase/firestore"
 import { useState } from "react"
-import { REQUEST } from "../utils/firebase"
+import { delay } from "../utils/delay"
+import { REQUEST, USERS } from "../utils/firebase"
 
 
 const useFirestore = () => {
@@ -64,11 +65,37 @@ const useFirestore = () => {
       .onSnapshot(onResult, onError)
   }
 
+  const updateInfo = async (
+    uid: string,
+    profession: string,
+    dob: Date,
+    language: string,
+    gender: string,
+  ) => {
+    setLoading(true)
+    const userCollection = await firestore().collection(USERS).doc(uid)
+    userCollection
+      .update({
+        profession,
+        dob,
+        language,
+        isVerify: true,
+        gender,
+      })
+      .then((res) => {
+        console.log(res)
+        delay(4000).then(() => {
+          setLoading(false)
+        })
+      })
+  }
+
   return {
     tenantRequest,
     getCollection,
     data,
     isLoading,
+    updateInfo,
     document,
     getDocument,
     queryDocument,

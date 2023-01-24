@@ -19,6 +19,8 @@ import {
   GetStartedScreen
 } from "../screens"
 import { ListingDetailsScreen } from "../screens/ListingDetailsScreen"
+import { SingleSelectionScreen } from "../screens/SingleSelectionScreen"
+import { VerifyScreen } from "../screens/VerifyScreen"
 import { colors } from "../theme"
 import { HomeNavigator } from "./HomeNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
@@ -43,6 +45,11 @@ export type AppStackParamList = {
   AutoComplete: undefined
   ListingDetails: { id: string }
   Conversation: { message_id: string; tenant_id: string; landlord_id: string }
+  SingleSelection: {
+    data: React.Dispatch<React.SetStateAction<string>>
+    type: "gender" | "language"
+  }
+  Verify: undefined
   // 🔥 Your screens go here
 }
 
@@ -88,6 +95,17 @@ const AppStack = observer(function AppStack() {
             name="Conversation"
             component={ConversationScreen}
             options={{ headerShown: true, animation: "slide_from_right" }}
+          />
+          <Stack.Group
+            screenOptions={{
+              presentation: "fullScreenModal",
+              animation: "slide_from_bottom",
+            }}
+          >
+            <Stack.Screen name="SingleSelection" component={SingleSelectionScreen} />
+
+          </Stack.Group>
+          <Stack.Screen name="Verify" component={VerifyScreen} options={{ headerShown: true, animation: "slide_from_right" }}
           />
           <Stack.Screen
             name="ListingDetails"
