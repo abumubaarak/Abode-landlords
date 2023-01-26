@@ -31,7 +31,7 @@ export const RequestItem = observer(function RequestItem(props: RequestItemProps
         <Text numberOfLines={5} style={$message} text={item.message} />
       </View>
       <View style={{ marginTop: 8 }}>
-        <Text text="Sent at" style={$label} />
+        <Text text="Sent" style={$label} />
         <Text style={$message} text={moment(new Date(item?.timestamp)).fromNow()} />
       </View>
     </View>
