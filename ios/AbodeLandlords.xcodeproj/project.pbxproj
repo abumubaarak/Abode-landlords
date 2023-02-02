@@ -202,6 +202,9 @@
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
 			name = AbodeLandlordsTests;
+			packageProductDependencies = (
+				E4F24CFC3D73F9FDB60ECEAA /* Mapbox */,
+			);
 			productName = AbodeLandlordsTests;
 			productReference = 00E356EE1AD99517003FC87E /* AbodeLandlordsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -224,6 +227,9 @@
 			dependencies = (
 			);
 			name = AbodeLandlords;
+			packageProductDependencies = (
+				043F6497D4346D3A8F1C8A0E /* Mapbox */,
+			);
 			productName = AbodeLandlords;
 			productReference = 13B07F961A680F5B00A75B9A /* AbodeLandlords.app */;
 			productType = "com.apple.product-type.application";
@@ -254,6 +260,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -732,6 +741,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
+			requirement = {
+				kind = exactVersion;
+				version = 5.12.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		043F6497D4346D3A8F1C8A0E /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = Mapbox;
+		};
+		E4F24CFC3D73F9FDB60ECEAA /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = Mapbox;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

@@ -1,6 +1,7 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 import { RouteProp, useRoute } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import MapboxGL from '@rnmapbox/maps'
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect, useState } from "react"
 import { Dimensions, TextStyle, View, ViewStyle } from "react-native"
@@ -12,6 +13,7 @@ import { Loader } from "../components/Loader"
 import useFirestore from "../hooks/useFirestore"
 import { AppStackParamList, AppStackScreenProps } from "../navigators"
 import { colors, typography } from "../theme"
+
 import { PROPERTY } from "../utils/firebase"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
@@ -23,6 +25,7 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
     const params = route.params
     const { getDocument, document, isLoading } = useFirestore()
     const [activeSlide, setActiveSlide] = useState<number>(0)
+    const [coordinates] = useState([52.520008, 13.404954]);
 
     useEffect(() => {
       getDocument(PROPERTY, params.id)
@@ -120,6 +123,18 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
 
             <Text text="Location" style={$label} />
             <Text style={$propertyInfoLabel} text={document?.address} />
+            <View style={$container}>
+              <MapboxGL.MapView styleURL={MapboxGL.StyleURL.Street} zoomEnabled={false} scrollEnabled={false} style={$map}>
+                <MapboxGL.Camera
+                  zoomLevel={13}
+
+                  centerCoordinate={[55.44418630506229, 25.17449237771902]} />
+                <MapboxGL.PointAnnotation
+
+                  coordinate={[55.44418630506229, 25.17449237771902]} />
+
+              </MapboxGL.MapView>
+            </View>
           </View>
         </Screen>
       </View>
@@ -131,6 +146,12 @@ const $root: ViewStyle = {
 }
 const $contentContainer: ViewStyle = {
   flexBasis: "90%",
+}
+const $container: ViewStyle = {
+  width: "100%",
+  height: 300,
+  marginTop: 5,
+  marginBottom: 30
 }
 const $slidingImage: ImageStyle = {
   height: 320,
@@ -162,6 +183,9 @@ const $heartIcon: ViewStyle = {
   justifyContent: "center",
 }
 
+const $map: ViewStyle = {
+  flex: 1
+}
 const $wishListContainer: ViewStyle = {
   alignItems: "flex-end",
   marginRight: 20,
