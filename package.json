@@ -53,6 +53,7 @@
     "@react-navigation/native": "~6.0.1",
     "@react-navigation/native-stack": "^6.0.2",
     "@react-navigation/stack": "~6.2.1",
+    "@rnmapbox/maps": "github:rnmapbox/maps#main",
     "@sendbird/chat": "^4.2.3",
     "@sendbird/uikit-react-native": "^2.2.0",
     "@shopify/flash-list": "^1.4.0",

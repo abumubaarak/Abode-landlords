@@ -195,6 +195,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				2448A7BAC19D9AE470996E57 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,6 +203,9 @@
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
 			name = AbodeLandlordsTests;
+			packageProductDependencies = (
+				E4F24CFC3D73F9FDB60ECEAA /* Mapbox */,
+			);
 			productName = AbodeLandlordsTests;
 			productReference = 00E356EE1AD99517003FC87E /* AbodeLandlordsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -218,12 +222,16 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 				EFB39B895146D5B4C541985C /* [CP-User] [RNFB] Core Configuration */,
+				A4DA1695CE8EBEA737A49227 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = AbodeLandlords;
+			packageProductDependencies = (
+				043F6497D4346D3A8F1C8A0E /* Mapbox */,
+			);
 			productName = AbodeLandlords;
 			productReference = 13B07F961A680F5B00A75B9A /* AbodeLandlords.app */;
 			productType = "com.apple.product-type.application";
@@ -254,6 +262,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +311,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd $PROJECT_DIR/..\nexport NODE_BINARY=node\n./node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		2448A7BAC19D9AE470996E57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AbodeLandlords-AbodeLandlordsTests/Pods-AbodeLandlords-AbodeLandlordsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AbodeLandlords-AbodeLandlordsTests/Pods-AbodeLandlords-AbodeLandlordsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AbodeLandlords-AbodeLandlordsTests/Pods-AbodeLandlords-AbodeLandlordsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4DA1695CE8EBEA737A49227 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AbodeLandlords/Pods-AbodeLandlords-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AbodeLandlords/Pods-AbodeLandlords-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AbodeLandlords/Pods-AbodeLandlords-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -732,6 +777,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
+			requirement = {
+				kind = exactVersion;
+				version = 5.12.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		043F6497D4346D3A8F1C8A0E /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = Mapbox;
+		};
+		E4F24CFC3D73F9FDB60ECEAA /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60D1DC9305650F4999CAE64B /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = Mapbox;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

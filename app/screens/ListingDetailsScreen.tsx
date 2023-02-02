@@ -1,18 +1,24 @@
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
-import { RouteProp, useRoute } from "@react-navigation/native"
-import { StackScreenProps } from "@react-navigation/stack"
-import { observer } from "mobx-react-lite"
-import React, { FC, useEffect, useState } from "react"
-import { Dimensions, TextStyle, View, ViewStyle } from "react-native"
-import FastImage, { ImageStyle } from "react-native-fast-image"
-import { Carousel, Pagination } from "react-native-snap-carousel"
-import { ListingTag, Occupied, Screen, Text } from "../components"
-import LisitingFeaturesTag from "../components/LisitingFeaturesTag"
-import { Loader } from "../components/Loader"
-import useFirestore from "../hooks/useFirestore"
-import { AppStackParamList, AppStackScreenProps } from "../navigators"
-import { colors, typography } from "../theme"
-import { PROPERTY } from "../utils/firebase"
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+//import MapboxGL from '@react-native-mapbox-gl/maps';
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
+
+import { AntDesign } from '@expo/vector-icons';
+import { observer } from "mobx-react-lite";
+import React, { FC, useEffect, useState } from "react";
+import { Dimensions, TextStyle, View, ViewStyle } from "react-native";
+import FastImage, { ImageStyle } from "react-native-fast-image";
+import { Carousel, Pagination } from "react-native-snap-carousel";
+import { ListingTag, Occupied, Screen, Text } from "../components";
+import LisitingFeaturesTag from "../components/LisitingFeaturesTag";
+import { Loader } from "../components/Loader";
+import useFirestore from "../hooks/useFirestore";
+import { AppStackParamList, AppStackScreenProps } from "../navigators";
+import { colors, typography } from "../theme";
+
+import MapboxGL from '@rnmapbox/maps';
+import Config from "../config";
+import { PROPERTY } from "../utils/firebase";
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
@@ -23,6 +29,10 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
     const params = route.params
     const { getDocument, document, isLoading } = useFirestore()
     const [activeSlide, setActiveSlide] = useState<number>(0)
+    const [coordinates] = useState([52.520008, 13.404954]);
+    MapboxGL.setAccessToken(Config.MAP_TOKEN);
+    // MapboxGL.set
+
 
     useEffect(() => {
       getDocument(PROPERTY, params.id)
@@ -102,7 +112,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
 
               {document?.status === "paid" && <Occupied propertyId={document?.id} />}
             </View>
-
             <Text text="Description" style={$label} />
             <Text style={$propertyInfoLabel} text={document?.description} />
 
@@ -120,6 +129,26 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
 
             <Text text="Location" style={$label} />
             <Text style={$propertyInfoLabel} text={document?.address} />
+            <View style={$container}>
+              <MapboxGL.MapView styleURL={MapboxGL.StyleURL.Street} zoomEnabled={false} scrollEnabled={false} style={$map}>
+                <MapboxGL.Camera
+                  animationMode="moveTo"
+                  zoomLevel={14}
+                  animationDuration={0}
+                  type="CameraStop"
+                  centerCoordinate={document?.addresssLocation} />
+
+                <MapboxGL.PointAnnotation
+                  id="point"
+
+                  coordinate={document?.addresssLocation} >
+                  <View style={$point}>
+                    <AntDesign name="home" size={20} color="white" />
+                  </View>
+                </MapboxGL.PointAnnotation>
+
+              </MapboxGL.MapView>
+            </View>
           </View>
         </Screen>
       </View>
@@ -131,6 +160,12 @@ const $root: ViewStyle = {
 }
 const $contentContainer: ViewStyle = {
   flexBasis: "90%",
+}
+const $container: ViewStyle = {
+  width: "100%",
+  height: 300,
+  marginTop: 10,
+  marginBottom: 30
 }
 const $slidingImage: ImageStyle = {
   height: 320,
@@ -148,6 +183,14 @@ const $paginationDot: ViewStyle = {
   width: 8,
   backgroundColor: colors.white,
 }
+const $point: ViewStyle = {
+  width: 30,
+  justifyContent: "center",
+  alignItems: "center",
+  height: 30,
+  borderRadius: 100,
+  backgroundColor: colors.palette.secondary100
+}
 const $heartIcon: ViewStyle = {
   shadowColor: "#000",
   shadowOffset: { width: 0, height: 2 },
@@ -162,6 +205,9 @@ const $heartIcon: ViewStyle = {
   justifyContent: "center",
 }
 
+const $map: ViewStyle = {
+  flex: 1
+}
 const $wishListContainer: ViewStyle = {
   alignItems: "flex-end",
   marginRight: 20,
