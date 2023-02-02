@@ -10,7 +10,7 @@ import {
   ListingsScreen,
   PaymentScreen,
   ProfileScreen,
-  RequestScreen
+  RequestScreen,
 } from "../screens"
 import { colors, spacing, typography } from "../theme"
 
@@ -61,7 +61,7 @@ export const HomeNavigator = () => {
                 <Ionicons name="add-circle-outline" size={27} color={colors.palette.primary100} />
               </View>
             </Pressable>
-          )
+          ),
         }}
       />
       <Tab.Screen

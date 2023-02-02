@@ -71,6 +71,7 @@
     "expo-splash-screen": "~0.16.1",
     "expo-status-bar": "~1.4.0",
     "firebase": "^9.15.0",
+    "geofire-common": "^6.0.0",
     "i18n-js": "3.9.2",
     "lottie-react-native": "^5.1.4",
     "mobx": "6.6.0",

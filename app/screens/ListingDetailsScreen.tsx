@@ -63,7 +63,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
             inactiveDotScale={0.8}
           />
 
-
           <View style={$propertyInfoContainer}>
             <View>
               <Text text={document?.name} preset="subheading" style={$propertyNameLabel} />
@@ -102,7 +101,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
               </View>
 
               {document?.status === "paid" && <Occupied propertyId={document?.id} />}
-
             </View>
 
             <Text text="Description" style={$label} />
@@ -124,7 +122,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
             <Text style={$propertyInfoLabel} text={document?.address} />
           </View>
         </Screen>
-
       </View>
     )
   })
@@ -204,12 +201,12 @@ const $tagContainer: TextStyle = {
   paddingVertical: 2,
 }
 const $priceContainer: ViewStyle = {
-  flexDirection: "row"
+  flexDirection: "row",
 }
 const $saContainer: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
-  paddingTop: 10
+  paddingTop: 10,
 }
 const $priceLabel: TextStyle = {
   color: colors.palette.primary100,
@@ -219,13 +216,13 @@ const $priceLabel: TextStyle = {
 const $statusTagContainer: ViewStyle = {
   borderRadius: 5,
   backgroundColor: colors.palette.secondary100,
-  marginLeft: 8
+  marginLeft: 8,
 }
 const $statusTag: TextStyle = {
   fontSize: 13,
   color: colors.white,
   paddingHorizontal: 5,
-  fontFamily: typography.primary.normal
+  fontFamily: typography.primary.normal,
 }
 const $pricePer: TextStyle = {
   fontSize: 14,
@@ -243,4 +240,3 @@ const $button: ViewStyle = {
   borderRadius: 30,
   backgroundColor: colors.palette.primary50,
 }
-

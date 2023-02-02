@@ -16,7 +16,7 @@ import {
   AddListingScreen,
   AutoCompleteScreen,
   ConversationScreen,
-  GetStartedScreen
+  GetStartedScreen,
 } from "../screens"
 import { ListingDetailsScreen } from "../screens/ListingDetailsScreen"
 import { SingleSelectionScreen } from "../screens/SingleSelectionScreen"
@@ -42,7 +42,7 @@ export type AppStackParamList = {
   GetStarted: undefined
   Home: undefined
   AddListing: undefined
-  AutoComplete: undefined
+  AutoComplete: { type: string }
   ListingDetails: { id: string }
   Conversation: { message_id: string; tenant_id: string; landlord_id: string }
   SingleSelection: {
@@ -90,7 +90,6 @@ const AppStack = observer(function AppStack() {
         <>
           <Stack.Screen name="Home" component={HomeNavigator} />
           <Stack.Screen name="AddListing" component={AddListingScreen} />
-          <Stack.Screen name="AutoComplete" component={AutoCompleteScreen} />
           <Stack.Screen
             name="Conversation"
             component={ConversationScreen}
@@ -103,9 +102,12 @@ const AppStack = observer(function AppStack() {
             }}
           >
             <Stack.Screen name="SingleSelection" component={SingleSelectionScreen} />
-
+            <Stack.Screen name="AutoComplete" component={AutoCompleteScreen} />
           </Stack.Group>
-          <Stack.Screen name="Verify" component={VerifyScreen} options={{ headerShown: true, animation: "slide_from_right" }}
+          <Stack.Screen
+            name="Verify"
+            component={VerifyScreen}
+            options={{ headerShown: true, animation: "slide_from_right" }}
           />
           <Stack.Screen
             name="ListingDetails"
@@ -129,7 +131,7 @@ const AppStack = observer(function AppStack() {
   )
 })
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()

@@ -117,7 +117,7 @@ export const PropertyMediaScreen = observer(function PropertyMediaScreen() {
             render={({ field: { onChange } }) => (
               <PropertyField
                 keyboardType="numeric"
-                label="What's the yearly rent?"
+                label="What's the monthly rent?"
                 value={String(pCost ?? "")}
                 onChange={onChange}
               />

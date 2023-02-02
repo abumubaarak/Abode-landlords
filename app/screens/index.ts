@@ -12,4 +12,3 @@ export * from "./ProfileScreen"
 export * from "./PropertyInfoScreen"
 export * from "./PropertyMediaScreen"
 export * from "./RequestScreen"
-

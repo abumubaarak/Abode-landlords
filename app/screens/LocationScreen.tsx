@@ -2,9 +2,10 @@ import { observer } from "mobx-react-lite"
 import { MotiView } from "moti"
 import React, { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { ViewStyle } from "react-native"
-import { PropertyField, Screen, SmallLabel } from "../components"
+import { Pressable, View, ViewStyle } from "react-native"
+import { PropertyField, Screen, SmallLabel, Text } from "../components"
 import { useStores } from "../models"
+import { navigate } from "../navigators"
 import { colors, spacing } from "../theme"
 
 export interface ILocation {
@@ -15,9 +16,15 @@ export interface ILocation {
 
 export const LocationScreen = observer(function LocationScreen() {
   const {
-    propertyStoreModel: { setPropertyLocation, address, city, name },
+    propertyStoreModel: {
+      setPropertyLocation,
+      address,
+      city,
+      name,
+      cityLocation,
+      addresssLocation,
+    },
   } = useStores()
-
   const { control, watch, getValues } = useForm<ILocation>({
     defaultValues: {
       name,
@@ -25,7 +32,7 @@ export const LocationScreen = observer(function LocationScreen() {
       address,
     },
   })
-
+  console.log(addresssLocation, cityLocation)
   useEffect(() => {
     const { address, city, name } = getValues()
     setPropertyLocation(name, city, address)
@@ -53,7 +60,27 @@ export const LocationScreen = observer(function LocationScreen() {
           name="name"
         />
 
-        <Controller
+        <Pressable
+          onPress={() => navigate("AutoComplete", { type: "city" })}
+          style={$pressableContainer}
+        >
+          <Text text="City*" preset="formLabel" size="lg" />
+          <View style={$pressableItem}>
+            <Text text={city} />
+          </View>
+        </Pressable>
+
+        <Pressable
+          onPress={() => navigate("AutoComplete", { type: "address" })}
+          style={$pressableContainer}
+        >
+          <Text text="Street Address*" preset="formLabel" size="lg" />
+          <View style={$pressableItem}>
+            <Text text={address} />
+          </View>
+        </Pressable>
+
+        {/* <Controller
           control={control}
           rules={{
             required: true,
@@ -62,9 +89,9 @@ export const LocationScreen = observer(function LocationScreen() {
             <PropertyField label="City*" value={value} onChange={onChange} />
           )}
           name="city"
-        />
+        /> */}
 
-        <Controller
+        {/* <Controller
           control={control}
           rules={{
             required: true,
@@ -73,7 +100,7 @@ export const LocationScreen = observer(function LocationScreen() {
             <PropertyField label="Street Address*" value={value} onChange={onChange} />
           )}
           name="address"
-        />
+        /> */}
 
         <SmallLabel
           text="Add all the details to easily find the apartment."
@@ -89,4 +116,15 @@ const $root: ViewStyle = {
   flex: 1,
   paddingTop: 10,
   backgroundColor: colors.white,
+}
+const $pressableContainer: ViewStyle = {
+  marginTop: 30,
+}
+const $pressableItem: ViewStyle = {
+  borderColor: colors.transparent,
+  borderBottomColor: colors.palette.neutral400,
+  borderBottomWidth: 1,
+  paddingBottom: 10,
+  height: 45,
+  justifyContent: "flex-end",
 }

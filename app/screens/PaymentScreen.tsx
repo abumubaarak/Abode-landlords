@@ -11,7 +11,6 @@ import useUser from "../hooks/useUser"
 import { AppStackScreenProps } from "../navigators"
 import { spacing } from "../theme"
 
-
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
 export const PaymentScreen: FC<StackScreenProps<AppStackScreenProps, "Payment">> = observer(
@@ -19,7 +18,6 @@ export const PaymentScreen: FC<StackScreenProps<AppStackScreenProps, "Payment">>
     const { isFocused } = useNavigation()
     const { uid } = useUser()
     const { queryDocument, data, isLoading } = useFirestore()
-
 
     useEffect(() => {
       queryDocument("Payments", "landlord_id", uid)

@@ -28,7 +28,6 @@ export const Close = observer(function Close(props: CloseProps) {
 })
 
 const $closeIcon: ViewStyle = {
-  flex: 1,
   paddingHorizontal: spacing.medium,
   marginTop: spacing.huge,
   alignItems: "flex-end",
