@@ -11,14 +11,12 @@ import { AppStackScreenProps } from "../navigators"
 import { spacing } from "../theme"
 import { PROPERTY } from "../utils/firebase"
 
-
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
 export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings">> = observer(
   function ListingsScreen() {
     const { queryDocument, data: userWishList, isLoading } = useFirestore()
     const { displayName, uid, email } = useUser()
-
 
     useEffect(() => {
       if (uid) {
@@ -47,4 +45,3 @@ const $root: ViewStyle = {
 const $separator: ViewStyle = {
   height: spacing.medium,
 }
-

@@ -45,7 +45,7 @@ export const ProfileScreen: FC<StackScreenProps<AppStackScreenProps, "Profile">>
     const age = differenceInYears(new Date(), dob)
 
     return (
-      <Screen style={$root} preset="scroll" >
+      <Screen style={$root} preset="scroll">
         <View style={[$card, { alignItems: "center" }]}>
           <View style={$avatarContainer}>
             <Text text={avatarName(displayName)} style={$avatarLabel} />
@@ -154,7 +154,7 @@ const $label: TextStyle = {
   fontSize: 17,
 }
 const $infoLabel: TextStyle = {
-  paddingTop: 10
+  paddingTop: 10,
 }
 const $subLabel: TextStyle = {
   fontFamily: typography.primary.normal,

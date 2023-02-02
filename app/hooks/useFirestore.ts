@@ -3,7 +3,6 @@ import { useState } from "react"
 import { delay } from "../utils/delay"
 import { REQUEST, USERS } from "../utils/firebase"
 
-
 const useFirestore = () => {
   const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData[]>([])
   const [document, setDocument] = useState<FirebaseFirestoreTypes.DocumentData>()
@@ -27,16 +26,9 @@ const useFirestore = () => {
       setLoading(false)
     }
   }
-  const queryDocument = async (
-    collectionPath: string,
-    path: string,
-    value: string
-  ) => {
+  const queryDocument = async (collectionPath: string, path: string, value: string) => {
     setLoading(true)
-    const collection = await firestore()
-      .collection(collectionPath)
-      .where(path, "==", value)
-      .get()
+    const collection = await firestore().collection(collectionPath).where(path, "==", value).get()
     const newData = collection.docs.map((doc) => ({ ...doc.data() }))
     setData(newData)
     if (data) {
@@ -103,4 +95,3 @@ const useFirestore = () => {
 }
 
 export default useFirestore
-

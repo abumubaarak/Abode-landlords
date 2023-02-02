@@ -13,7 +13,7 @@ export interface OccupiedProps {
   /**
    * An optional style override useful for padding & margin.
    */
-  style?: StyleProp<ViewStyle>,
+  style?: StyleProp<ViewStyle>
   propertyId: string
 }
 
@@ -39,15 +39,11 @@ export const Occupied = observer(function Occupied(props: OccupiedProps) {
   if (isLoading || userIsLoading) return <Loader />
 
   return (
-    <View
-      style={$container}
-    >
+    <View style={$container}>
       <Text text="Occupied By" style={$header} />
       <UserLabel tenant_id={data[0]?.tenant_id} />
       <Text text="Next Payment On" style={$header} />
       <Text text={nextDueYear} style={$label} />
-
-
     </View>
   )
 })
@@ -65,11 +61,10 @@ const $container: ViewStyle = {
 const $header: TextStyle = {
   fontSize: 14,
   fontFamily: typography.primary.normal,
-  opacity: 0.8
+  opacity: 0.8,
 }
 const $label: TextStyle = {
   fontSize: 14,
   fontFamily: typography.primary.semiBold,
-  marginTop: -3
+  marginTop: -3,
 }
-

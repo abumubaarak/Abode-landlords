@@ -86,12 +86,7 @@ export const amenitiesGroupThree = [
   },
 ]
 
-export const AMENITIES = [
-  ...amenitiesGroupOne,
-  ...amenitiesGroupTwo,
-  ...amenitiesGroupThree,
-
-]
+export const AMENITIES = [...amenitiesGroupOne, ...amenitiesGroupTwo, ...amenitiesGroupThree]
 export const propertyTypeOptions = [
   { label: "Room", value: "room" },
   { label: "Apartment", value: "apartment" },

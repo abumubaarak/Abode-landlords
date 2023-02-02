@@ -18,6 +18,7 @@ export const PropertyStoreModel = types
   .props({
     name: "",
     city: "",
+    short_code: "",
     address: "",
     propertySize: types.maybe(types.number),
     avaliableBedroom: 0,
@@ -25,6 +26,8 @@ export const PropertyStoreModel = types
     avaliableBathroom: 0,
     propertyType: "",
     rules: types.array(types.string),
+    cityLocation: types.array(types.number),
+    addresssLocation: types.array(types.number),
     amenities: types.array(types.string),
     cost: types.maybe(types.number),
     description: "",
@@ -77,6 +80,7 @@ export const PropertyStoreModel = types
     reset() {
       ;(self.name = ""),
         (self.city = ""),
+        (self.short_code = ""),
         (self.address = ""),
         (self.propertySize = undefined),
         (self.avaliableBedroom = 0),
@@ -84,12 +88,31 @@ export const PropertyStoreModel = types
         (self.avaliableBathroom = 0),
         (self.propertyType = ""),
         (self.rules = undefined),
+        (self.cityLocation = undefined),
+        (self.addresssLocation = undefined),
         (self.amenities = undefined),
         (self.cost = undefined),
         (self.description = ""),
         (self.localImages = undefined),
         (self.remoteImages = undefined)
     },
+    setCity(city: string, location: string, shortCode: string) {
+      self.city = city
+      const lat = +location.split(",")[0]
+      const lon = +location.split(",")[1]
+      self.cityLocation.clear()
+      self.cityLocation.push(lat, lon)
+      self.short_code = shortCode
+    },
+
+    setAddresss(address: string, location: string) {
+      self.address = address
+      const lat = +location.split(",")[0]
+      const lon = +location.split(",")[1]
+      self.addresssLocation.clear()
+      self.addresssLocation.push(lat, lon)
+    },
+
     setPropertyLocation(name: string, city: string, address: string) {
       self.name = name
       self.city = city

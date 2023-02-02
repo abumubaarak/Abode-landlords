@@ -21,22 +21,11 @@ const RequestProfile = observer(function RequestProfile(props: RequestProfilePro
 
   return (
     <View style={{ marginVertical: spacing.large, alignItems: "center" }}>
-      <View
-        style={$container}
-      >
-        <Text
-          style={$avatarLabel}
-          text={avatarName(name)}
-        />
+      <View style={$container}>
+        <Text style={$avatarLabel} text={avatarName(name)} />
       </View>
-      <Text
-        text={name}
-        style={$label}
-      />
-      <Text
-        text="Tenant"
-        style={$tenant}
-      />
+      <Text text={name} style={$label} />
+      <Text text="Tenant" style={$tenant} />
     </View>
   )
 })
@@ -54,14 +43,15 @@ const $avatarLabel: TextStyle = {
   fontSize: 40,
   lineHeight: 50,
   color: colors.white,
-  paddingTop: 5
+  paddingTop: 5,
 }
 const $label: TextStyle = {
   fontFamily: typography.primary.semiBold,
-  paddingTop: spacing.medium
+  paddingTop: spacing.medium,
 }
 
 const $tenant: TextStyle = {
   fontFamily: typography.primary.normal,
-  opacity: 0.4, fontSize: 14
+  opacity: 0.4,
+  fontSize: 14,
 }

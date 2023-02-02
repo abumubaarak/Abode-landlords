@@ -10,7 +10,7 @@ export interface UserLabelProps {
   /**
    * An optional style override useful for padding & margin.
    */
-  style?: StyleProp<ViewStyle>,
+  style?: StyleProp<ViewStyle>
   tenant_id: string
 }
 
@@ -27,13 +27,11 @@ export const UserLabel = observer(function UserLabel(props: UserLabelProps) {
 
   if (isLoading) return <ActivityIndicator animating={true} size="small" color={colors?.white} />
 
-  return (
-    <Text text={document?.displayName} style={$label} />
-  )
+  return <Text text={document?.displayName} style={$label} />
 })
 
 const $label: TextStyle = {
   fontSize: 14,
   fontFamily: typography.primary.semiBold,
-  marginTop: -3
+  marginTop: -3,
 }

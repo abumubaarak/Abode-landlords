@@ -30,10 +30,7 @@ const ListingInfo = observer(function ListingInfo(props: ListingInfoProps) {
 
   return (
     <View>
-      <Text
-        text="APPLIED FOR"
-        style={$applied}
-      />
+      <Text text="APPLIED FOR" style={$applied} />
       <View style={$infoContainer}>
         <FastImage
           source={{
@@ -44,10 +41,7 @@ const ListingInfo = observer(function ListingInfo(props: ListingInfoProps) {
           style={$image}
         />
         <View style={$infoDetailsContainer}>
-          <Text
-            text={document?.propertyType}
-            style={$propertyName}
-          />
+          <Text text={document?.propertyType} style={$propertyName} />
           <Text style={{ fontSize: 13 }} text={document?.name} numberOfLines={1} />
         </View>
       </View>
@@ -68,23 +62,24 @@ const $applied: TextStyle = {
 const $line = {
   height: 1,
   backgroundColor: colors.lightgrey,
-  opacity: 0.3, marginTop: 5
+  opacity: 0.3,
+  marginTop: 5,
 }
 const $infoContainer: ViewStyle = {
   marginTop: 3,
   flexDirection: "row",
-  alignItems: "center"
+  alignItems: "center",
 }
 const $image: ImageStyle = {
   width: 65,
   height: 45,
-  borderRadius: 5
+  borderRadius: 5,
 }
 
 const $infoDetailsContainer: ViewStyle = {
   flexDirection: "column",
   flexShrink: 1,
-  paddingHorizontal: 7
+  paddingHorizontal: 7,
 }
 const $propertyName: TextStyle = {
   fontSize: 13,
