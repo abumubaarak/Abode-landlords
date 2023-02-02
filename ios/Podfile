@@ -1,4 +1,5 @@
 $RNFirebaseAsStaticFramework = true
+$RNMapboxMapsImpl = 'mapbox'
 pod_folder = Pathname.new(__FILE__).dirname.realpath
 
 require File.join(File.dirname(`cd #{pod_folder} && node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
@@ -54,8 +55,8 @@ target 'AbodeLandlords' do
   end
   post_install do |installer|
     react_native_post_install(installer)
-    $RNMapboxMaps.post_install(installer)
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+     __apply_Xcode_12_5_M1_post_install_workaround(installer)
     File.delete("./.xcode.env.local") if File.exist?("./.xcode.env.local")
+    $RNMapboxMaps.post_install(installer)
   end
 end

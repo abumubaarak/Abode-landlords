@@ -1,20 +1,23 @@
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
-import { RouteProp, useRoute } from "@react-navigation/native"
-import { StackScreenProps } from "@react-navigation/stack"
-import MapboxGL from '@rnmapbox/maps'
-import { observer } from "mobx-react-lite"
-import React, { FC, useEffect, useState } from "react"
-import { Dimensions, TextStyle, View, ViewStyle } from "react-native"
-import FastImage, { ImageStyle } from "react-native-fast-image"
-import { Carousel, Pagination } from "react-native-snap-carousel"
-import { ListingTag, Occupied, Screen, Text } from "../components"
-import LisitingFeaturesTag from "../components/LisitingFeaturesTag"
-import { Loader } from "../components/Loader"
-import useFirestore from "../hooks/useFirestore"
-import { AppStackParamList, AppStackScreenProps } from "../navigators"
-import { colors, typography } from "../theme"
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+//import MapboxGL from '@react-native-mapbox-gl/maps';
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
 
-import { PROPERTY } from "../utils/firebase"
+import { observer } from "mobx-react-lite";
+import React, { FC, useEffect, useState } from "react";
+import { Dimensions, TextStyle, View, ViewStyle } from "react-native";
+import FastImage, { ImageStyle } from "react-native-fast-image";
+import { Carousel, Pagination } from "react-native-snap-carousel";
+import { ListingTag, Occupied, Screen, Text } from "../components";
+import LisitingFeaturesTag from "../components/LisitingFeaturesTag";
+import { Loader } from "../components/Loader";
+import useFirestore from "../hooks/useFirestore";
+import { AppStackParamList, AppStackScreenProps } from "../navigators";
+import { colors, typography } from "../theme";
+
+import MapboxGL from '@rnmapbox/maps';
+import Config from "../config";
+import { PROPERTY } from "../utils/firebase";
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
@@ -26,6 +29,9 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
     const { getDocument, document, isLoading } = useFirestore()
     const [activeSlide, setActiveSlide] = useState<number>(0)
     const [coordinates] = useState([52.520008, 13.404954]);
+    MapboxGL.setAccessToken(Config.MAP_TOKEN);
+    // MapboxGL.set
+
 
     useEffect(() => {
       getDocument(PROPERTY, params.id)
@@ -126,12 +132,13 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
             <View style={$container}>
               <MapboxGL.MapView styleURL={MapboxGL.StyleURL.Street} zoomEnabled={false} scrollEnabled={false} style={$map}>
                 <MapboxGL.Camera
-                  zoomLevel={13}
-
-                  centerCoordinate={[55.44418630506229, 25.17449237771902]} />
+                  animationMode="moveTo"
+                  zoomLevel={14}
+                  type="CameraStop"
+                  centerCoordinate={document?.cityLocation} />
                 <MapboxGL.PointAnnotation
-
-                  coordinate={[55.44418630506229, 25.17449237771902]} />
+                  id="point"
+                  coordinate={document?.cityLocation} />
 
               </MapboxGL.MapView>
             </View>

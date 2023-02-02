@@ -7,6 +7,7 @@ import React, { FC, useEffect, useRef, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Pressable, TextStyle, View, ViewStyle } from "react-native"
 import { Close, PropertyField, Text } from "../components"
+import Config from "../config"
 import { useStores } from "../models"
 import { AppStackParamList, AppStackScreenProps, goBack } from "../navigators"
 import { colors, spacing, typography } from "../theme"
@@ -41,13 +42,13 @@ export const AutoCompleteScreen: FC<StackScreenProps<AppStackScreenProps, "AutoC
         try {
           const response = await api.get<unknown>(
             `/${city}.json?` +
-              new URLSearchParams({
-                access_token:
-                  "pk.eyJ1IjoiYWJ1bXViYXJhay1kZXYiLCJhIjoiY2xkbGVqdDQzMDB5YjNwbHU3d2R5czB3ZyJ9.tGodIXP4U85fbt0tV5BjZA",
-                autocomplete: "true",
-                limit: "5",
-                country: params.type === "address" ? short_code : "",
-              }),
+            new URLSearchParams({
+              access_token:
+                Config.MAP_TOKEN,
+              autocomplete: "true",
+              limit: "5",
+              country: params.type === "address" ? short_code : "",
+            }),
           )
           console.log(response.config)
           setSuggestion(response.data)
