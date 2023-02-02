@@ -3,6 +3,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 
+import { AntDesign } from '@expo/vector-icons';
 import { observer } from "mobx-react-lite";
 import React, { FC, useEffect, useState } from "react";
 import { Dimensions, TextStyle, View, ViewStyle } from "react-native";
@@ -111,7 +112,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
 
               {document?.status === "paid" && <Occupied propertyId={document?.id} />}
             </View>
-
             <Text text="Description" style={$label} />
             <Text style={$propertyInfoLabel} text={document?.description} />
 
@@ -134,11 +134,18 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
                 <MapboxGL.Camera
                   animationMode="moveTo"
                   zoomLevel={14}
+                  animationDuration={0}
                   type="CameraStop"
-                  centerCoordinate={document?.cityLocation} />
+                  centerCoordinate={document?.addresssLocation} />
+
                 <MapboxGL.PointAnnotation
                   id="point"
-                  coordinate={document?.cityLocation} />
+
+                  coordinate={document?.addresssLocation} >
+                  <View style={$point}>
+                    <AntDesign name="home" size={20} color="white" />
+                  </View>
+                </MapboxGL.PointAnnotation>
 
               </MapboxGL.MapView>
             </View>
@@ -157,7 +164,7 @@ const $contentContainer: ViewStyle = {
 const $container: ViewStyle = {
   width: "100%",
   height: 300,
-  marginTop: 5,
+  marginTop: 10,
   marginBottom: 30
 }
 const $slidingImage: ImageStyle = {
@@ -175,6 +182,14 @@ const $paginationDot: ViewStyle = {
   height: 8,
   width: 8,
   backgroundColor: colors.white,
+}
+const $point: ViewStyle = {
+  width: 30,
+  justifyContent: "center",
+  alignItems: "center",
+  height: 30,
+  borderRadius: 100,
+  backgroundColor: colors.palette.secondary100
 }
 const $heartIcon: ViewStyle = {
   shadowColor: "#000",
