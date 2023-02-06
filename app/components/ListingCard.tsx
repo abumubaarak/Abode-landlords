@@ -5,6 +5,7 @@ import * as React from "react"
 import { Pressable, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import FastImage, { ImageStyle } from "react-native-fast-image"
 import { colors, typography } from "../theme"
+import { currencyFormat } from "../utils"
 import { Card } from "./Card"
 
 import { ListingTag } from "./ListingTag"
@@ -68,8 +69,8 @@ export const ListingCard = observer(function ListingCard(props: ListingCardProps
             </View>
 
             <View style={$priceContainer}>
-              <Text text={`$${data.cost}`} style={$priceLabel} />
-              <Text style={$pricePer} text=" /year" />
+              <Text text={`${currencyFormat(data.cost)}`} style={$priceLabel} />
+              <Text style={$pricePer} text=" /month" />
             </View>
           </View>
         }
