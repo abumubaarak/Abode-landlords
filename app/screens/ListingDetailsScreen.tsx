@@ -18,6 +18,7 @@ import { colors, typography } from "../theme";
 
 import MapboxGL from '@rnmapbox/maps';
 import Config from "../config";
+import { currencyFormat } from "../utils";
 import { PROPERTY } from "../utils/firebase";
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
@@ -102,8 +103,8 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
               </View>
               <View style={$saContainer}>
                 <View style={$priceContainer}>
-                  <Text text={`$${document?.cost}`} style={$priceLabel} />
-                  <Text style={$pricePer} text="/year" />
+                  <Text text={`${currencyFormat(document?.cost)}`} style={$priceLabel} />
+                  <Text style={$pricePer} text="/month" />
                 </View>
                 <View style={$statusTagContainer}>
                   <Text text={document?.status} style={$statusTag} />

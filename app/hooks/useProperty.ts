@@ -2,7 +2,6 @@ import auth from "@react-native-firebase/auth"
 import firestore from "@react-native-firebase/firestore"
 import { useState } from "react"
 import { useStores } from "../models"
-const geofire = require("geofire-common")
 
 const useProperty = () => {
   const {

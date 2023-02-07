@@ -1,3 +1,4 @@
+import { MaterialIcons } from "@expo/vector-icons"
 import { observer } from "mobx-react-lite"
 import React, { memo } from "react"
 import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
@@ -24,7 +25,10 @@ const RequestProfile = observer(function RequestProfile(props: RequestProfilePro
       <View style={$container}>
         <Text style={$avatarLabel} text={avatarName(name)} />
       </View>
-      <Text text={name} style={$label} />
+      <View style={$labelContainer}>
+        <Text text={name} style={$label} />
+        <MaterialIcons name="verified" size={24} color={colors.palette.primary100} />
+      </View>
       <Text text="Tenant" style={$tenant} />
     </View>
   )
@@ -39,6 +43,11 @@ const $container: ViewStyle = {
   width: 100,
   height: 100,
 }
+const $labelContainer: ViewStyle = {
+  flexDirection: "row",
+  paddingTop: spacing.medium,
+  alignItems: "center"
+}
 const $avatarLabel: TextStyle = {
   fontSize: 40,
   lineHeight: 50,
@@ -47,7 +56,6 @@ const $avatarLabel: TextStyle = {
 }
 const $label: TextStyle = {
   fontFamily: typography.primary.semiBold,
-  paddingTop: spacing.medium,
 }
 
 const $tenant: TextStyle = {

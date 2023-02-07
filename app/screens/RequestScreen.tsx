@@ -20,16 +20,10 @@ export const RequestScreen: FC<StackScreenProps<AppStackScreenProps, "Request">>
     const sliderWidth = Dimensions.get("window").width
     const itemWidth = sliderWidth - 100 + HORIZONTAL_MARGIN * 2
     const [activeItem, setActiveItem] = useState<DocumentData>()
-
-    // Pull in one of our MST stores
-    // const { someStore, anotherStore } = useStores()
-
-    // Pull in navigation via hook
-    // const navigation = useNavigation()
     const { tenantRequest, isLoading, data } = useFirestore()
 
     useEffect(() => {
-      tenantRequest("lid", auth().currentUser.uid)
+      tenantRequest("lid", auth()?.currentUser?.uid)
     }, [])
 
     useEffect(() => {

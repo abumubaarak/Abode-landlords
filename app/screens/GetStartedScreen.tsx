@@ -1,10 +1,11 @@
+import auth from "@react-native-firebase/auth"
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect, useState } from "react"
 import { ActivityIndicator, ImageBackground, TextStyle, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "../components"
-import { AppStackScreenProps } from "../navigators"
+import { AppStackScreenProps, resetRoot } from "../navigators"
 import { colors, spacing, typography } from "../theme"
 import { onGoogleButtonPress } from "../utils/firebase"
 
@@ -28,6 +29,12 @@ export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStar
         webClientId: "980427352092-vaihpt46rgqge0vns0ctne7ql9qoajmt.apps.googleusercontent.com",
       })
     }, [])
+    useEffect(() => {
+      if (auth().currentUser?.uid != null) {
+        const params = { index: 0, routes: [{ name: 'Home' }] }
+        resetRoot(params)
+      }
+    }, [auth().currentUser?.uid])
 
     return (
       <Screen statusBarStyle="light" style={$root}>

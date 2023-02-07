@@ -7,5 +7,5 @@ export const wait = (timeout: number) => {
 }
 export const currencyFormat = (value: string) => {
   const amount: number = +value
-  return "$" + amount.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+  return "$" + amount.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
