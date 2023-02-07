@@ -1,24 +1,21 @@
-import { useState, useEffect, useRef } from "react"
-import { BackHandler, Platform } from "react-native"
 import {
-  PartialState,
-  NavigationState,
-  NavigationAction,
-  createNavigationContainerRef,
+  createNavigationContainerRef, NavigationAction, NavigationState, PartialState
 } from "@react-navigation/native"
+import { useEffect, useRef, useState } from "react"
+import { BackHandler, Platform } from "react-native"
 import Config from "../config"
 import type { PersistNavigationConfig } from "../config/config.base"
 import { useIsMounted } from "../utils/useIsMounted"
 
 /* eslint-disable */
 export const RootNavigation = {
-  navigate(_name: string, _params?: any) {},
-  goBack() {},
-  resetRoot(_state?: PartialState<NavigationState> | NavigationState) {},
+  navigate(_name: string, _params?: any) { },
+  goBack() { },
+  resetRoot(_state?: PartialState<NavigationState> | NavigationState) { },
   getRootState(): NavigationState {
     return {} as any
   },
-  dispatch(_action: NavigationAction) {},
+  dispatch(_action: NavigationAction) { },
 }
 /* eslint-enable */
 

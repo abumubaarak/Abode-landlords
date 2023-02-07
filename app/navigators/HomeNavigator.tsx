@@ -1,8 +1,8 @@
 import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons"
+import auth from "@react-native-firebase/auth"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { useNavigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import React from "react"
+import React, { useEffect } from "react"
 import { Pressable, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import {
@@ -10,9 +10,10 @@ import {
   ListingsScreen,
   PaymentScreen,
   ProfileScreen,
-  RequestScreen,
+  RequestScreen
 } from "../screens"
 import { colors, spacing, typography } from "../theme"
+import { navigate, resetRoot } from "./navigationUtilities"
 
 export type HomeNavigatorParamList = {
   Home: undefined
@@ -23,7 +24,12 @@ const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator<HomeNavigatorParamList>()
 export const HomeNavigator = () => {
   const { bottom } = useSafeAreaInsets()
-  const navigation = useNavigation()
+  useEffect(() => {
+    if (auth()?.currentUser?.uid == null) {
+      const params = { index: 0, routes: [{ name: 'GetStarted' }] }
+      resetRoot(params)
+    }
+  }, [auth().currentUser?.uid])
 
   return (
     <Tab.Navigator
@@ -56,7 +62,7 @@ export const HomeNavigator = () => {
             />
           ),
           headerRight: () => (
-            <Pressable onPress={() => navigation.navigate("AddListing", { screen: "AddListing" })}>
+            <Pressable onPress={() => navigate("AddListing", { screen: "AddListing" })}>
               <View style={{ marginRight: spacing.tiny }}>
                 <Ionicons name="add-circle-outline" size={27} color={colors.palette.primary100} />
               </View>

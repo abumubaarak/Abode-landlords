@@ -23,6 +23,11 @@ export const createUser = () => {
     email: auth().currentUser.email,
     uid: auth().currentUser.uid,
     userType: "landlord",
+    profession: "",
+    dob: undefined,
+    language: undefined,
+    isVerify: false,
+    gender: undefined,
   })
 }
 

@@ -16,7 +16,7 @@ import {
   AddListingScreen,
   AutoCompleteScreen,
   ConversationScreen,
-  GetStartedScreen,
+  GetStartedScreen
 } from "../screens"
 import { ListingDetailsScreen } from "../screens/ListingDetailsScreen"
 import { SingleSelectionScreen } from "../screens/SingleSelectionScreen"
@@ -86,52 +86,46 @@ const AppStack = observer(function AppStack() {
       screenOptions={{ headerShown: false }}
       initialRouteName={auth().currentUser?.uid ? "Home" : "GetStarted"} // @demo remove-current-line
     >
-      {auth().currentUser?.uid ? (
-        <>
-          <Stack.Screen name="Home" component={HomeNavigator} />
-          <Stack.Screen name="AddListing" component={AddListingScreen} />
-          <Stack.Screen
-            name="Conversation"
-            component={ConversationScreen}
-            options={{ headerShown: true, animation: "slide_from_right" }}
-          />
-          <Stack.Group
-            screenOptions={{
-              presentation: "fullScreenModal",
-              animation: "slide_from_bottom",
-            }}
-          >
-            <Stack.Screen name="SingleSelection" component={SingleSelectionScreen} />
-            <Stack.Screen name="AutoComplete" component={AutoCompleteScreen} />
-          </Stack.Group>
-          <Stack.Screen
-            name="Verify"
-            component={VerifyScreen}
-            options={{ headerShown: true, animation: "slide_from_right" }}
-          />
-          <Stack.Screen
-            name="ListingDetails"
-            options={{
-              headerShown: true,
-              animation: "slide_from_right",
-              headerTransparent: true,
-              headerTitle: "",
-              headerBackTitleVisible: false,
-              headerTintColor: colors.black,
-            }}
-            component={ListingDetailsScreen}
-          />
-        </>
-      ) : (
-        <>
-          <Stack.Screen name="GetStarted" component={GetStartedScreen} />
-        </>
-      )}
+      <Stack.Screen name="GetStarted" component={GetStartedScreen} />
+      <Stack.Screen name="Home" component={HomeNavigator} />
+      <Stack.Screen name="AddListing" component={AddListingScreen} />
+      <Stack.Screen
+        name="Conversation"
+        component={ConversationScreen}
+        options={{ headerShown: true, animation: "slide_from_right" }}
+      />
+      <Stack.Group
+        screenOptions={{
+          presentation: "fullScreenModal",
+          animation: "slide_from_bottom",
+        }}
+      >
+        <Stack.Screen name="SingleSelection" component={SingleSelectionScreen} />
+        <Stack.Screen name="AutoComplete" component={AutoCompleteScreen} />
+      </Stack.Group>
+      <Stack.Screen
+        name="Verify"
+        component={VerifyScreen}
+        options={{ headerShown: true, animation: "slide_from_right" }}
+      />
+      <Stack.Screen
+        name="ListingDetails"
+        options={{
+          headerShown: true,
+          animation: "slide_from_right",
+          headerTransparent: true,
+          headerTitle: "",
+          headerBackTitleVisible: false,
+          headerTintColor: colors.black,
+        }}
+        component={ListingDetailsScreen}
+      />
+
     </Stack.Navigator>
   )
 })
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()

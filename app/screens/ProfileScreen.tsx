@@ -9,20 +9,10 @@ import { ImageStyle, Pressable, TextStyle, View, ViewStyle } from "react-native"
 import { Screen, Text } from "../components"
 import useFirestore from "../hooks/useFirestore"
 import useUser from "../hooks/useUser"
-import { AppStackScreenProps, navigate } from "../navigators"
+import { AppStackScreenProps, navigate, resetRoot } from "../navigators"
 import { colors, spacing, typography } from "../theme"
 import { avatarName } from "../utils"
 import { USERS } from "../utils/firebase"
-
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
-
-// STOP! READ ME FIRST!
-// To fix the TS error below, you'll need to add the following things in your navigation config:
-// - Add `Profile: undefined` to AppStackParamList
-// - Import your screen, and add it to the stack:
-//     `<Stack.Screen name="Profile" component={ProfileScreen} />`
-// Hint: Look for the 🔥!
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
@@ -37,7 +27,10 @@ export const ProfileScreen: FC<StackScreenProps<AppStackScreenProps, "Profile">>
     }, [isFocused])
 
     const handleLogout = () => {
-      auth().signOut()
+      auth().signOut().then(() => {
+        const params = { index: 0, routes: [{ name: 'GetStarted' }] }
+        resetRoot(params)
+      })
     }
 
     const dob = document?.dob?.toDate()
