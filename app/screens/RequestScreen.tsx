@@ -48,7 +48,8 @@ export const RequestScreen: FC<StackScreenProps<AppStackScreenProps, "Request">>
     }
 
     if (isLoading) return <Loader />
-    if (data.length === 0) return <Empty message="No pending request." />
+    if (data.length === 0) return <Empty message="Nothing in Request." />
+
     return (
       <View style={$root}>
         <Carousel

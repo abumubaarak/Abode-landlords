@@ -3,7 +3,7 @@ import { FlashList } from "@shopify/flash-list"
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect } from "react"
 import { View, ViewStyle } from "react-native"
-import { Loader } from "../components"
+import { Empty, Loader } from "../components"
 import { ListingCard } from "../components/ListingCard"
 import useFirestore from "../hooks/useFirestore"
 import useUser from "../hooks/useUser"
@@ -15,7 +15,7 @@ import { PROPERTY } from "../utils/firebase"
 // @ts-ignore
 export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings">> = observer(
   function ListingsScreen() {
-    const { queryDocument, data: userWishList, isLoading } = useFirestore()
+    const { queryDocument, data: listings, isLoading } = useFirestore()
     const { displayName, uid, email } = useUser()
 
     useEffect(() => {
@@ -25,10 +25,11 @@ export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings"
     }, [])
 
     if (isLoading) return <Loader />
+    if (listings.length === 0) return <Empty message="Nothing in Listings." />
 
     return (
       <FlashList
-        data={userWishList}
+        data={listings}
         contentContainerStyle={$root}
         ItemSeparatorComponent={() => <View style={$separator} />}
         renderItem={({ item }) => <ListingCard key={item.id} item={item} />}

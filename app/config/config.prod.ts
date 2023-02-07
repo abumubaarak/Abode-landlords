@@ -6,7 +6,7 @@
  * https://reactnative.dev/docs/security#storing-sensitive-info
  */
 export default {
-  API_URL: "CHANGEME",
+  API_URL: "https://abode-backend.fly.dev/",
   MAP_TOKEN: "pk.eyJ1IjoiYWJ1bXViYXJhay1kZXYiLCJhIjoiY2xkbGVqdDQzMDB5YjNwbHU3d2R5czB3ZyJ9.tGodIXP4U85fbt0tV5BjZA"
 
 }

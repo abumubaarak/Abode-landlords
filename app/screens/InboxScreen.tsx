@@ -4,7 +4,7 @@ import { ContentStyle, FlashList } from "@shopify/flash-list"
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect } from "react"
 import { View, ViewStyle } from "react-native"
-import { Loader } from "../components"
+import { Empty, Loader } from "../components"
 import MessageItem from "../components/MessageItem"
 import useApi from "../hooks/useApi"
 import { AppStackScreenProps } from "../navigators"
@@ -23,6 +23,7 @@ export const InboxScreen: FC<StackScreenProps<AppStackScreenProps, "Inbox">> = o
     }, [isFocused])
 
     if (isLoading) return <Loader />
+    if (messages?.data?.length === 0 || !messages) return <Empty message="Nothing in Inbox." />
 
     return (
       <View style={$root}>
