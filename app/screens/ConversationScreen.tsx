@@ -22,10 +22,10 @@ export const ConversationScreen: FC<StackScreenProps<AppStackScreenProps, "Conve
     const route = useRoute<RouteProp<AppStackParamList, "Conversation">>()
     const params = route.params
     const [conversation, setConversation] = useState([])
-    const socket = io("http://localhost:9000")
+    const socket = io("https://abode-backend.fly.dev:9000")
     const { message_id, landlord_id, tenant_id } = params
     const JOINED_USER = `${auth().currentUser.uid}${params.message_id}`
-
+    console.log(socket.connected)
     socket.on("connect", () => {
       socket.emit("join_chat", JOINED_USER)
     })
