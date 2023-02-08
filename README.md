@@ -15,6 +15,9 @@
 - Instant Messaging.
 - Track Payment.
 
+## Architecture :gear:	
+<img  src="./brand/arc.png"/>
+
 ## Tech Stack 🔨
 - React❤️Native
 - TypeScript
