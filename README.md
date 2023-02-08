@@ -18,11 +18,14 @@
 ## Tech Stack 🔨
 - React❤️Native
 - TypeScript
+- Ignite
 - React Navigation
+- Firebase
+- Socket.io-client
 - MobX State Tree
 - React Hook Form
 - Moti
-- React Native Image Picker
+- FlashList
 
 ## Screenshot 📸
 <img width="270px" src="./brand/01.png"> <img width="270px" src="./brand/02.png"> <img width="270px" src="./brand/03.png">
@@ -31,7 +34,14 @@
 <img width="270px" src="./brand/10.png"> <img width="270px" src="./brand/11.png"> <img width="270px" src="./brand/12.png"> 
 
 ## Download the app📱
-[Google Play](https://www.a.com/us/) [App Store](https://www.a.com/us/)
+- [App Store](https://www.a.com/us/)
+- [Google Play](https://www.a.com/us/) 
 
-   
+---
+
+## Author
+Built :hammer_and_wrench: with :heart: by Abu Mubarak
+- [Twitter](https://twitter.com/abumubarakdev)
+- [Linkedin](https://www.linkedin.com/in/abu-mubarak-035652182/)
+- [Mail](https://mail.google.com/mail/u/0/?fs=1&to=abumubarak.dev@gmail.com&tf=cm)
 
