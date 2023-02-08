@@ -34,12 +34,14 @@
 <img width="270px" src="./brand/10.png"> <img width="270px" src="./brand/11.png"> <img width="270px" src="./brand/12.png"> 
 
 ## Download the app📱
-[Google Play](https://www.a.com/us/) [App Store](https://www.a.com/us/)
+- [App Store](https://www.a.com/us/)
+- [Google Play](https://www.a.com/us/) 
 
 ---
 
-Built with ♥ by Abu Mubarak
-[Twitter](https://twitter.com/abumubarakdev)
-[Linkedin](https://www.linkedin.com/in/abu-mubarak-035652182/)
-[Mail](abumubarak.dev@gmail.com)
+## Author
+Built :hammer_and_wrench: with :heart: by Abu Mubarak
+- [Twitter](https://twitter.com/abumubarakdev)
+- [Linkedin](https://www.linkedin.com/in/abu-mubarak-035652182/)
+- [Mail](abumubarak.dev@gmail.com)
 
