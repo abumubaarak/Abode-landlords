@@ -39,7 +39,7 @@
 ## Download the app📱
 - [App Store](https://www.a.com/us/)
 - [Google Play](https://www.a.com/us/) 
-- [Check out Abode for tenant](https://github.com/abumubarak-dev/Abode)
+- [Check out Abode for tenant app](https://github.com/abumubarak-dev/Abode)
 ---
 
 ## Author
