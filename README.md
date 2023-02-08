@@ -43,5 +43,5 @@
 Built :hammer_and_wrench: with :heart: by Abu Mubarak
 - [Twitter](https://twitter.com/abumubarakdev)
 - [Linkedin](https://www.linkedin.com/in/abu-mubarak-035652182/)
-- [Mail](abumubarak.dev@gmail.com)
+- [Mail](https://mail.google.com/mail/u/0/?fs=1&to=abumubarak.dev@gmail.com&tf=cm)
 
