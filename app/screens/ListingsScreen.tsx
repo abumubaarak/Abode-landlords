@@ -1,3 +1,4 @@
+import { useIsFocused } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { FlashList } from "@shopify/flash-list"
 import { observer } from "mobx-react-lite"
@@ -16,13 +17,14 @@ import { PROPERTY } from "../utils/firebase"
 export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings">> = observer(
   function ListingsScreen() {
     const { queryDocument, data: listings, isLoading } = useFirestore()
-    const { displayName, uid, email } = useUser()
+    const { uid } = useUser()
+    const isFocused = useIsFocused()
 
     useEffect(() => {
       if (uid) {
         queryDocument(PROPERTY, "uid", uid)
       }
-    }, [])
+    }, [isFocused])
 
     if (isLoading) return <Loader />
     if (listings.length === 0) return <Empty message="Nothing in Listings." />
