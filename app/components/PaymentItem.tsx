@@ -21,7 +21,7 @@ export const PaymentItem = observer(function PaymentItem(props: PaymentItemProps
 
   const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
-  const snapPoints = useMemo(() => ["10%", "55%"], [])
+  const snapPoints = useMemo(() => ["10%", "60%"], [])
 
   const paidOn: Date = item?.created.toDate()
 
