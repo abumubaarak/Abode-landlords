@@ -41,12 +41,13 @@ export const PropertyStoreModel = types
       return isSet
     },
     get isPropertyFormValid() {
+      // console.log(self.roomSize)
       const isSet: boolean =
         self.propertySize !== 0 &&
         self.propertySize !== undefined &&
         self.avaliableBedroom !== 0 &&
-        self.roomSize !== 0 &&
         self.roomSize !== undefined &&
+        self.roomSize !== 0 &&
         self.avaliableBathroom !== 0 &&
         self.propertyType !== "" &&
         self.rules.length > 0 &&
@@ -78,7 +79,7 @@ export const PropertyStoreModel = types
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({
     reset() {
-      ;(self.name = ""),
+      ; (self.name = ""),
         (self.city = ""),
         (self.short_code = ""),
         (self.address = ""),
@@ -113,10 +114,8 @@ export const PropertyStoreModel = types
       self.addresssLocation.push(lat, lon)
     },
 
-    setPropertyLocation(name: string, city: string, address: string) {
+    setPropertyName(name: string) {
       self.name = name
-      self.city = city
-      self.address = address
     },
     setPropertySize(size: number) {
       self.propertySize = size
@@ -167,7 +166,7 @@ export const PropertyStoreModel = types
     },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
-export interface PropertyStore extends Instance<typeof PropertyStoreModel> {}
-export interface PropertyStoreSnapshotOut extends SnapshotOut<typeof PropertyStoreModel> {}
-export interface PropertyStoreSnapshotIn extends SnapshotIn<typeof PropertyStoreModel> {}
+export interface PropertyStore extends Instance<typeof PropertyStoreModel> { }
+export interface PropertyStoreSnapshotOut extends SnapshotOut<typeof PropertyStoreModel> { }
+export interface PropertyStoreSnapshotIn extends SnapshotIn<typeof PropertyStoreModel> { }
 export const createPropertyStoreDefaultModel = () => types.optional(PropertyStoreModel, {})

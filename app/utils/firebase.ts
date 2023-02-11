@@ -18,17 +18,20 @@ export async function onGoogleButtonPress() {
 }
 
 export const createUser = () => {
-  firestore().collection("Users").doc(auth().currentUser.uid).set({
+  const document = firestore().collection(USERS).doc(auth().currentUser.uid)
+
+  document.set({
     displayName: auth().currentUser.displayName,
     email: auth().currentUser.email,
     uid: auth().currentUser.uid,
     userType: "landlord",
     profession: "",
-    dob: undefined,
-    language: undefined,
+    dob: new Date(),
+    language: "",
     isVerify: false,
-    gender: undefined,
+    gender: "",
   })
+  console.log(document)
 }
 
 export const PROPERTY = "Property"

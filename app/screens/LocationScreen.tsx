@@ -10,14 +10,12 @@ import { colors, spacing } from "../theme"
 
 export interface ILocation {
   name: string
-  city: string
-  address: string
 }
 
 export const LocationScreen = observer(function LocationScreen() {
   const {
     propertyStoreModel: {
-      setPropertyLocation,
+      setPropertyName,
       address,
       city,
       name,
@@ -27,16 +25,13 @@ export const LocationScreen = observer(function LocationScreen() {
   } = useStores()
   const { control, watch, getValues } = useForm<ILocation>({
     defaultValues: {
-      name,
-      city,
-      address,
+      name
     },
   })
-  console.log(addresssLocation, cityLocation)
   useEffect(() => {
-    const { address, city, name } = getValues()
-    setPropertyLocation(name, city, address)
-  }, [watch("name"), watch("address"), watch("city")])
+    const { name } = getValues()
+    setPropertyName(name)
+  }, [watch("name")])
 
   return (
     <MotiView
@@ -66,7 +61,7 @@ export const LocationScreen = observer(function LocationScreen() {
         >
           <Text text="City*" preset="formLabel" size="lg" />
           <View style={$pressableItem}>
-            <Text text={city} />
+            <Text text={city} numberOfLines={1} />
           </View>
         </Pressable>
 
@@ -76,31 +71,9 @@ export const LocationScreen = observer(function LocationScreen() {
         >
           <Text text="Street Address*" preset="formLabel" size="lg" />
           <View style={$pressableItem}>
-            <Text text={address} />
+            <Text text={address} numberOfLines={1} />
           </View>
         </Pressable>
-
-        {/* <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <PropertyField label="City*" value={value} onChange={onChange} />
-          )}
-          name="city"
-        /> */}
-
-        {/* <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <PropertyField label="Street Address*" value={value} onChange={onChange} />
-          )}
-          name="address"
-        /> */}
 
         <SmallLabel
           text="Add all the details to easily find the apartment."
