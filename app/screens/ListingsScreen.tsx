@@ -3,13 +3,14 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { FlashList } from "@shopify/flash-list"
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect } from "react"
-import { View, ViewStyle } from "react-native"
+import { RefreshControl, View, ViewStyle } from "react-native"
 import { Empty, Loader } from "../components"
 import { ListingCard } from "../components/ListingCard"
 import useFirestore from "../hooks/useFirestore"
 import useUser from "../hooks/useUser"
+import { useUtils } from "../hooks/useUtils"
 import { AppStackScreenProps } from "../navigators"
-import { spacing } from "../theme"
+import { colors, spacing } from "../theme"
 import { PROPERTY } from "../utils/firebase"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
@@ -19,18 +20,32 @@ export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings"
     const { queryDocument, data: listings, isLoading } = useFirestore()
     const { uid } = useUser()
     const isFocused = useIsFocused()
+    const { refreshing, onRefresh } = useUtils()
+
 
     useEffect(() => {
       if (uid) {
         queryDocument(PROPERTY, "uid", uid)
       }
-    }, [isFocused])
+    }, [])
+    useEffect(() => {
+      if (uid) {
+        queryDocument(PROPERTY, "uid", uid)
+      }
+    }, [refreshing])
 
     if (isLoading) return <Loader />
     if (listings.length === 0) return <Empty message="Nothing in Listings." />
 
     return (
       <FlashList
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.black}
+          />
+        }
         data={listings}
         contentContainerStyle={$root}
         ItemSeparatorComponent={() => <View style={$separator} />}
