@@ -234,6 +234,7 @@ const $buttonContainer: ViewStyle = {
   alignItems: "center",
   flexDirection: "row",
   paddingVertical: 5,
+  backgroundColor: colors.white,
   borderTopWidth: 1,
   borderTopColor: colors.lightgrey,
   paddingHorizontal: spacing.large,

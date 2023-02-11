@@ -41,12 +41,13 @@ export const PropertyStoreModel = types
       return isSet
     },
     get isPropertyFormValid() {
+      // console.log(self.roomSize)
       const isSet: boolean =
         self.propertySize !== 0 &&
         self.propertySize !== undefined &&
         self.avaliableBedroom !== 0 &&
-        self.roomSize !== 0 &&
         self.roomSize !== undefined &&
+        self.roomSize !== 0 &&
         self.avaliableBathroom !== 0 &&
         self.propertyType !== "" &&
         self.rules.length > 0 &&
