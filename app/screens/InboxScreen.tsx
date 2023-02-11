@@ -7,6 +7,7 @@ import { View, ViewStyle } from "react-native"
 import { Empty, Loader } from "../components"
 import MessageItem from "../components/MessageItem"
 import useApi from "../hooks/useApi"
+import { useUtils } from "../hooks/useUtils"
 import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
 
@@ -15,12 +16,17 @@ import { colors, spacing } from "../theme"
 export const InboxScreen: FC<StackScreenProps<AppStackScreenProps, "Inbox">> = observer(
   function InboxScreen() {
     const isFocused = useIsFocused()
-
+    const { refreshing, onRefresh } = useUtils()
     const { getMessageList, messages, isLoading } = useApi()
 
     useEffect(() => {
       getMessageList()
     }, [isFocused])
+
+    useEffect(() => {
+      if (!refreshing) return
+      getMessageList()
+    }, [refreshing])
 
     if (isLoading) return <Loader />
     if (messages?.data?.length === 0 || !messages) return <Empty message="Nothing in Inbox." />

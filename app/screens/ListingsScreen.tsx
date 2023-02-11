@@ -1,4 +1,3 @@
-import { useIsFocused } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { FlashList } from "@shopify/flash-list"
 import { observer } from "mobx-react-lite"
@@ -19,19 +18,15 @@ export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings"
   function ListingsScreen() {
     const { queryDocument, data: listings, isLoading } = useFirestore()
     const { uid } = useUser()
-    const isFocused = useIsFocused()
     const { refreshing, onRefresh } = useUtils()
 
+    useEffect(() => {
+      queryDocument(PROPERTY, "uid", uid)
+    }, [])
 
     useEffect(() => {
-      if (uid) {
-        queryDocument(PROPERTY, "uid", uid)
-      }
-    }, [])
-    useEffect(() => {
-      if (uid) {
-        queryDocument(PROPERTY, "uid", uid)
-      }
+      if (!refreshing) return
+      queryDocument(PROPERTY, "uid", uid)
     }, [refreshing])
 
     if (isLoading) return <Loader />
