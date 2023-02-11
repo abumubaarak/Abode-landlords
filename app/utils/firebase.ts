@@ -26,7 +26,7 @@ export const createUser = () => {
     uid: auth().currentUser.uid,
     userType: "landlord",
     profession: "",
-    dob: "",
+    dob: new Date(),
     language: "",
     isVerify: false,
     gender: "",
