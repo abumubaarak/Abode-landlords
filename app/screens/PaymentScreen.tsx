@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { ContentStyle, FlashList } from "@shopify/flash-list"
 import { observer } from "mobx-react-lite"
@@ -16,7 +15,6 @@ import { colors, spacing } from "../theme"
 // @ts-ignore
 export const PaymentScreen: FC<StackScreenProps<AppStackScreenProps, "Payment">> = observer(
   function PaymentScreen() {
-    const { isFocused } = useNavigation()
     const { uid } = useUser()
     const { queryDocument, data, isLoading } = useFirestore()
     const { refreshing, onRefresh } = useUtils()
@@ -25,6 +23,7 @@ export const PaymentScreen: FC<StackScreenProps<AppStackScreenProps, "Payment">>
       queryDocument("Payments", "landlord_id", uid)
     }, [])
     useEffect(() => {
+      if (!refreshing) return
       queryDocument("Payments", "landlord_id", uid)
     }, [refreshing])
 
