@@ -14,6 +14,8 @@
 		2215ACBC1E62C44583DB69A9 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */; };
 		3E9D68F09E9D13B5454D657D /* Pods_AbodeLandlords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3ADFDA6DB53E06141CE1DBB /* Pods_AbodeLandlords.framework */; };
 		400EB2C1E1807E6CBC68B7AB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */; };
+		6E18C9412998EDA90033385C /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = 043F6497D4346D3A8F1C8A0E /* Mapbox */; };
+		6E18C9422998EDA90033385C /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = E4F24CFC3D73F9FDB60ECEAA /* Mapbox */; };
 		6EAC44E22957AF590038EC2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EAC44E12957AF580038EC2C /* GoogleService-Info.plist */; };
 		BE406F562862D73000A81E39 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE406F552862D73000A81E39 /* BootSplash.storyboard */; };
 		C058F20BAF4A2EE0C1D01696 /* Pods_AbodeLandlords_AbodeLandlordsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2365C1FDB2FCAFA01EAA549B /* Pods_AbodeLandlords_AbodeLandlordsTests.framework */; };
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E18C9422998EDA90033385C /* Mapbox in Frameworks */,
 				C058F20BAF4A2EE0C1D01696 /* Pods_AbodeLandlords_AbodeLandlordsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E18C9412998EDA90033385C /* Mapbox in Frameworks */,
 				3E9D68F09E9D13B5454D657D /* Pods_AbodeLandlords.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
