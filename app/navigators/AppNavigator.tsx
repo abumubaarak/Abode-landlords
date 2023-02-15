@@ -8,6 +8,7 @@ import auth from "@react-native-firebase/auth"
 import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
+import MapboxGL from "@rnmapbox/maps"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { useColorScheme } from "react-native"
@@ -69,6 +70,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
   const [initializing, setInitializing] = useState(true)
+  MapboxGL.setAccessToken(Config.MAP_TOKEN)
 
   function onAuthStateChanged() {
     if (initializing) {

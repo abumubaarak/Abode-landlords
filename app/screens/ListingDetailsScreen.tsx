@@ -17,7 +17,6 @@ import { AppStackParamList, AppStackScreenProps } from "../navigators";
 import { colors, typography } from "../theme";
 
 import MapboxGL from '@rnmapbox/maps';
-import Config from "../config";
 import { currencyFormat } from "../utils";
 import { PROPERTY } from "../utils/firebase";
 
@@ -31,8 +30,6 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
     const { getDocument, document, isLoading } = useFirestore()
     const [activeSlide, setActiveSlide] = useState<number>(0)
     const [coordinates] = useState([52.520008, 13.404954]);
-    MapboxGL.setAccessToken(Config.MAP_TOKEN);
-    // MapboxGL.set
 
 
     useEffect(() => {
@@ -135,6 +132,8 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
                 <MapboxGL.Camera
                   animationMode="moveTo"
                   zoomLevel={14}
+
+                  show
                   animationDuration={0}
                   type="CameraStop"
                   centerCoordinate={document?.addresssLocation} />
