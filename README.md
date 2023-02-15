@@ -37,7 +37,7 @@
 <img width="270px" src="./brand/10.png"> <img width="270px" src="./brand/11.png"> <img width="270px" src="./brand/12.png"> 
 
 ## Download the app📱
-- [App Store](https://www.a.com/us/)
+- [App Store](https://apps.apple.com/app/abode-landlord/id1667660727)
 - [Google Play](https://www.a.com/us/) 
 - [Check out Abode for tenant app](https://github.com/abumubarak-dev/Abode)
 ---
