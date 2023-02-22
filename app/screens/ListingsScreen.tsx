@@ -42,6 +42,7 @@ export const ListingsScreen: FC<StackScreenProps<AppStackScreenProps, "Listings"
           />
         }
         data={listings}
+        testID="listings"
         contentContainerStyle={$root}
         ItemSeparatorComponent={() => <View style={$separator} />}
         renderItem={({ item }) => <ListingCard key={item.id} item={item} />}

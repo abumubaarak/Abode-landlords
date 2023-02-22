@@ -39,7 +39,7 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
     if (isLoading) return <Loader />
 
     return (
-      <View style={$root}>
+      <View style={$root} testID="details-parent">
         <Screen preset="auto" style={$contentContainer}>
           <Carousel
             vertical={false}
@@ -53,6 +53,7 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
             renderItem={({ item }) => (
               <FastImage
                 style={$slidingImage}
+                testID="swipe"
                 source={{
                   uri: item,
                   priority: FastImage.priority.normal,
@@ -73,7 +74,7 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
 
           <View style={$propertyInfoContainer}>
             <View>
-              <Text text={document?.name} preset="subheading" style={$propertyNameLabel} />
+              <Text testID="listing-title" text={document?.name} preset="subheading" style={$propertyNameLabel} />
               <View style={$tagContainer}>
                 <ListingTag
                   label={`${document?.avaliableBedroom} Bedroom`}

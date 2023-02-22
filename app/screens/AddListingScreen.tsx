@@ -113,11 +113,11 @@ export const AddListingScreen = observer(function AddListingScreen() {
       preset="fixed"
       safeAreaEdges={["bottom"]}
     >
-      <View style={$steperContainer}>
+      <View testID="step" style={$steperContainer}>
         <Text text={`Step ${count}: ${type}`} style={$steper} />
         <View>
           <View style={$closeView}>
-            <Icon icon="x" style={$icon} onPress={() => navigation.goBack()} />
+            <Icon testID="close" icon="x" style={$icon} onPress={() => navigation.goBack()} />
           </View>
         </View>
       </View>

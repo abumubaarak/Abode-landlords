@@ -62,7 +62,7 @@ export const HomeNavigator = () => {
             />
           ),
           headerRight: () => (
-            <Pressable onPress={() => navigate("AddListing", { screen: "AddListing" })}>
+            <Pressable testID="add-icon" onPress={() => navigate("AddListing", { screen: "AddListing" })}>
               <View style={{ marginRight: spacing.tiny }}>
                 <Ionicons name="add-circle-outline" size={27} color={colors.palette.primary100} />
               </View>

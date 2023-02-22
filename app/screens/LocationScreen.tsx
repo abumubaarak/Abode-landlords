@@ -50,7 +50,7 @@ export const LocationScreen = observer(function LocationScreen() {
             required: true,
           }}
           render={({ field: { onChange, value } }) => (
-            <PropertyField label="Give your listing a title*" value={value} onChange={onChange} />
+            <PropertyField testID="listing-name" label="Give your listing a title*" value={value} onChange={onChange} />
           )}
           name="name"
         />

@@ -6,13 +6,21 @@ describe("Main", () => {
     await reloadApp()
   })
 
-
-
-  it("should have get started screen", async () => {
-    await expect(element(by.id("getStarted-header"))).toHaveText("Rent out your property\nthe easy way")
-    await expect(element(by.id("getStarted-subHeader"))).toBeVisible()
+  it("should render listing screen", async () => {
+    await expect(element(by.id("listings"))).toBeVisible()
   })
-  it("should tap on the get started button", async () => {
-    await expect(element(by.id("getStarted-button"))).toBeVisible()
+
+  it("should render add listing screen", async () => {
+    await element(by.id("add-icon")).tap()
+    await expect(element(by.id("step"))).toBeVisible()
+    await expect(element(by.id("listing-name"))).toBeVisible()
+    await element(by.id("close")).tap()
+  })
+
+  it("should render listing details screen", async () => {
+    await element(by.id("listing-card")).atIndex(0).tap()
+    await element(by.id('swipe')).atIndex(0).swipe('left');
+    await element(by.id('swipe')).atIndex(1).swipe('left');
+    await expect(element(by.id("listing-title"))).toBeVisible()
   })
 })
