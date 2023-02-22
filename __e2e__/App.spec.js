@@ -6,13 +6,7 @@ describe("Main", () => {
     await reloadApp()
   })
 
-
-
-  it("should have get started screen", async () => {
-    await expect(element(by.id("getStarted-header"))).toHaveText("Rent out your property\nthe easy way")
-    await expect(element(by.id("getStarted-subHeader"))).toBeVisible()
-  })
-  it("should tap on the get started button", async () => {
-    await expect(element(by.id("getStarted-button"))).toBeVisible()
+  it("should render listing screen", async () => {
+    await expect(element(by.id("listings"))).toBeVisible()
   })
 })

@@ -27,7 +27,7 @@ export const ListingCard = observer(function ListingCard(props: ListingCardProps
   const navigation = useNavigation()
 
   return (
-    <Pressable onPress={() => navigation.navigate("ListingDetails", { id: item.id })}>
+    <Pressable testID="listing-card" onPress={() => navigation.navigate("ListingDetails", { id: item.id })}>
       <Card
         preset="default"
         style={$container}
