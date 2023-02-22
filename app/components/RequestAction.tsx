@@ -28,18 +28,19 @@ const RequestAction = observer(function RequestAction(props: RequestActionProps)
   const [disable, setDisable] = useState<"accept" | "decline" | undefined>(undefined)
 
   const handleAcceptRequest = async () => {
-    setDisable("accept")
-    await firestore()
-      .collection(REQUEST)
-      .doc(requestId)
-      .update({
-        status: "accepted",
-      })
-      .then(() => {
-        initConversation(messages)
-        setDisable(undefined)
-        navigation.navigate("Inbox")
-      })
+
+    // setDisable("accept")
+    // await firestore()
+    //   .collection(REQUEST)
+    //   .doc(requestId)
+    //   .update({
+    //     status: "accepted",
+    //   })
+    //   .then(() => {
+    //     initConversation(messages)
+    //     setDisable(undefined)
+    //     navigation.navigate("Inbox")
+    //   })
   }
   const handleDeclineRequest = async () => {
     setDisable("decline")
