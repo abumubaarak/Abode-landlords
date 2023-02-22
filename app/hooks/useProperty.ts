@@ -50,6 +50,7 @@ const useProperty = () => {
         cityLocation,
         addresssLocation,
         uid: auth().currentUser.uid,
+        createdAt: Date.now()
       })
       .then(() => {
         setUploaded(true)

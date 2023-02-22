@@ -17,7 +17,7 @@ import { AppStackParamList, AppStackScreenProps } from "../navigators";
 import { colors, typography } from "../theme";
 
 import MapboxGL from '@rnmapbox/maps';
-import { currencyFormat } from "../utils";
+import { capitalizeFirstLetter, currencyFormat } from "../utils";
 import { PROPERTY } from "../utils/firebase";
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
@@ -118,7 +118,7 @@ export const ListingDetailsScreen: FC<StackScreenProps<AppStackScreenProps, "Lis
             <LisitingFeaturesTag item={document?.amenities} type="amenities" />
 
             <Text text="Property Type" style={$label} />
-            <Text style={$propertyInfoLabel} text={document?.propertyType} />
+            <Text style={$propertyInfoLabel} text={capitalizeFirstLetter(document?.propertyType)} />
 
             <Text text="Room Size" style={$label} />
             <Text style={$propertyInfoLabel} text={`${document?.roomSize} sqft`} />
