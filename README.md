@@ -23,12 +23,15 @@
 - TypeScript
 - Ignite
 - React Navigation
+- Mapbox
 - Firebase
 - Socket.io-client
 - MobX State Tree
 - React Hook Form
 - Moti
 - FlashList
+- FlashList
+- Detox
 
 ## Screenshot 📸
 <img width="270px" src="./brand/01.png"> <img width="270px" src="./brand/02.png"> <img width="270px" src="./brand/03.png">
