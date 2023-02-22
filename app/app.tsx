@@ -23,7 +23,7 @@ import { useInitialRootStore } from "./models";
 import { AppNavigator, useNavigationPersistence } from "./navigators";
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary";
 import { setupReactotron } from "./services/reactotron";
-import { customFontsToLoad, typography } from "./theme";
+import { colors, customFontsToLoad, typography } from "./theme";
 import "./utils/ignoreWarnings";
 import * as storage from "./utils/storage";
 
@@ -111,8 +111,8 @@ function App(props: AppProps) {
       <ErrorBoundary catchErrors={Config.catchErrors}>
         <ToastProvider offsetTop={40}
           textStyle={{ fontFamily: typography.primary.normal, paddingRight: 15 }}
-
           dangerIcon={<AntDesign name="infocirlceo" size={24} color="white" />}
+          successColor={colors.palette.secondary100}
           successIcon={<AntDesign name="check" size={24} color="white" />}
         >
           <BottomSheetModalProvider>

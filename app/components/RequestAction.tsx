@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { memo, useState } from "react"
 import { ActivityIndicator, Pressable, StyleProp, TextStyle, View, ViewStyle } from "react-native"
+import { useToast } from "react-native-toast-notifications"
 import useApi from "../hooks/useApi"
 import { Messages } from "../services/api"
 import { colors } from "../theme"
@@ -25,23 +26,28 @@ const RequestAction = observer(function RequestAction(props: RequestActionProps)
   const { messages, requestId } = props
   const { initConversation } = useApi()
   const navigation = useNavigation()
+  const toast = useToast();
+
   const [disable, setDisable] = useState<"accept" | "decline" | undefined>(undefined)
 
   const handleAcceptRequest = async () => {
-
-    // setDisable("accept")
-    // await firestore()
-    //   .collection(REQUEST)
-    //   .doc(requestId)
-    //   .update({
-    //     status: "accepted",
-    //   })
-    //   .then(() => {
-    //     initConversation(messages)
-    //     setDisable(undefined)
-    //     navigation.navigate("Inbox")
-    //   })
+    setDisable("accept")
+    await firestore()
+      .collection(REQUEST)
+      .doc(requestId)
+      .update({
+        status: "accepted",
+      })
+      .then(() => {
+        initConversation(messages)
+        setDisable(undefined)
+        toast.show("Request Accepted. Kindly check your inbox to start chatting!", {
+          type: "success",
+          placement: "top",
+        })
+      })
   }
+
   const handleDeclineRequest = async () => {
     setDisable("decline")
     await firestore()
