@@ -5,6 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack"
 import React, { useEffect } from "react"
 import { Pressable, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { useToast } from "react-native-toast-notifications"
+import useFirestore from "../hooks/useFirestore"
+import useUser from "../hooks/useUser"
 import {
   InboxScreen,
   ListingsScreen,
@@ -13,6 +16,7 @@ import {
   RequestScreen
 } from "../screens"
 import { colors, spacing, typography } from "../theme"
+import { USERS } from "../utils/firebase"
 import { navigate, resetRoot } from "./navigationUtilities"
 
 export type HomeNavigatorParamList = {
@@ -24,12 +28,28 @@ const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator<HomeNavigatorParamList>()
 export const HomeNavigator = () => {
   const { bottom } = useSafeAreaInsets()
+  const { uid } = useUser()
+  const { getDocument: getProfile, document: profile, isLoading: profileIsLoading } = useFirestore()
+  const toast = useToast();
+
   useEffect(() => {
+    getProfile(USERS, uid)
     if (auth()?.currentUser?.uid == null) {
       const params = { index: 0, routes: [{ name: 'GetStarted' }] }
       resetRoot(params)
     }
-  }, [auth().currentUser?.uid])
+  }, [uid])
+
+  const handleAddListing = () => {
+    if (profile.isVerify) {
+      navigate("AddListing", { screen: "AddListing" })
+    } else {
+      toast.show("You need to verify your account before you can create listing", {
+        type: "danger",
+        placement: "top",
+      })
+    }
+  }
 
   return (
     <Tab.Navigator
@@ -62,7 +82,7 @@ export const HomeNavigator = () => {
             />
           ),
           headerRight: () => (
-            <Pressable testID="add-icon" onPress={() => navigate("AddListing", { screen: "AddListing" })}>
+            <Pressable testID="add-icon" onPress={handleAddListing}>
               <View style={{ marginRight: spacing.tiny }}>
                 <Ionicons name="add-circle-outline" size={27} color={colors.palette.primary100} />
               </View>
