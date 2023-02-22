@@ -39,7 +39,9 @@ export const ProfileScreen: FC<StackScreenProps<AppStackScreenProps, "Profile">>
 
     return (
       <Screen style={$root} preset="scroll">
-        <View style={[$card, { alignItems: "center" }]}>
+        <View style={[$card, {
+          alignItems: "center", marginTop: 20
+        }]}>
           <View style={$avatarContainer}>
             <Text text={avatarName(displayName)} style={$avatarLabel} />
           </View>
@@ -102,14 +104,13 @@ export const ProfileScreen: FC<StackScreenProps<AppStackScreenProps, "Profile">>
 
 const $root: ViewStyle = {
   flex: 1,
-  paddingTop: 20,
-  paddingHorizontal: spacing.small,
   backgroundColor: colors.white,
 }
 
 const $card: ViewStyle = {
   backgroundColor: colors.white,
   paddingVertical: 15,
+  marginHorizontal: spacing.small,
   shadowColor: "#000",
   shadowOffset: { width: 0, height: 1 },
   shadowOpacity: 0.08,
