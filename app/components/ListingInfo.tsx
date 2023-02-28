@@ -4,6 +4,7 @@ import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import FastImage, { ImageStyle } from "react-native-fast-image"
 import useFirestore from "../hooks/useFirestore"
 import { colors, typography } from "../theme"
+import { capitalizeFirstLetter } from "../utils"
 import { PROPERTY } from "../utils/firebase"
 import { Text } from "./Text"
 
@@ -41,7 +42,7 @@ const ListingInfo = observer(function ListingInfo(props: ListingInfoProps) {
           style={$image}
         />
         <View style={$infoDetailsContainer}>
-          <Text text={document?.propertyType} style={$propertyName} />
+          <Text text={capitalizeFirstLetter(document?.propertyType)} style={$propertyName} />
           <Text style={{ fontSize: 13 }} text={document?.name} numberOfLines={1} />
         </View>
       </View>
