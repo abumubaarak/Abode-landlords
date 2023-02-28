@@ -90,7 +90,7 @@ const AppStack = observer(function AppStack() {
     >
       <Stack.Screen name="GetStarted" component={GetStartedScreen} />
       <Stack.Screen name="Home" component={HomeNavigator} />
-      <Stack.Screen name="AddListing" component={AddListingScreen} />
+      <Stack.Screen name="AddListing" options={{ animation: "slide_from_right" }} component={AddListingScreen} />
       <Stack.Screen
         name="Conversation"
         component={ConversationScreen}
