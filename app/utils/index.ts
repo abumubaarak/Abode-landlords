@@ -10,5 +10,5 @@ export const currencyFormat = (value: string) => {
   return "$" + amount.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 export const capitalizeFirstLetter = (value: string) => {
-  return value.charAt(0).toUpperCase() + value.slice(1);
+  return value?.charAt(0)?.toUpperCase() + value?.slice(1);
 }
