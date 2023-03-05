@@ -17,6 +17,7 @@ import {
   AddListingScreen,
   AutoCompleteScreen,
   ConversationScreen,
+  DeleteAccountScreen,
   GetStartedScreen
 } from "../screens"
 import { ListingDetailsScreen } from "../screens/ListingDetailsScreen"
@@ -43,6 +44,7 @@ export type AppStackParamList = {
   GetStarted: undefined
   Home: undefined
   AddListing: undefined
+  DeleteAccount: undefined
   AutoComplete: { type: string }
   ListingDetails: { id: string }
   Conversation: { message_id: string; tenant_id: string; landlord_id: string }
@@ -96,6 +98,8 @@ const AppStack = observer(function AppStack() {
         component={ConversationScreen}
         options={{ headerShown: true, animation: "slide_from_right" }}
       />
+      <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ headerShown: true, headerTitle: "Delete account" }} />
+
       <Stack.Group
         screenOptions={{
           presentation: "fullScreenModal",
