@@ -30,7 +30,7 @@
 - React Hook Form
 - Moti
 - FlashList
-- FlashList
+- Stripe
 - Detox
 
 ## Screenshot 📸
