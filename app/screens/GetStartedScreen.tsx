@@ -3,8 +3,8 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
 import React, { FC, useEffect, useState } from "react"
-import { ActivityIndicator, ImageBackground, TextStyle, View, ViewStyle } from "react-native"
-import { Button, Screen, Text } from "../components"
+import { ActivityIndicator, ImageBackground, Platform, TextStyle, View, ViewStyle } from "react-native"
+import { Button, Text } from "../components"
 import useFirebase from "../hooks/useFirebase"
 //import useFirebase from "../hooks/useFirebase"
 import { AppStackScreenProps, resetRoot } from "../navigators"
@@ -44,15 +44,14 @@ export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStar
       }
     }, [auth().currentUser?.uid])
 
+    const signInType = Platform.OS === "ios" ? continueWithApple : continueWithGoogle
     return (
-      <Screen statusBarStyle="light" style={$root}>
-        <View style={$topContainer}>
-          <ImageBackground resizeMode="cover" source={getStarted} style={$root} />
-        </View>
+      <View style={$root}>
+        <ImageBackground resizeMode="cover" source={getStarted} style={$root} />
+
         <View style={$bottomContainer}>
           <Text tx="getStarted.main" preset="heading" style={$labelHeading} />
           <Text tx="getStarted.sub" preset="default" style={$labelSubHeading} />
-          <Text onPress={continueWithApple} text="Apple" preset="default" style={$labelSubHeading} />
 
           <Button
             LeftAccessory={(_) =>
@@ -66,12 +65,12 @@ export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStar
             }
             text={!isLoading && "Get Started"}
             preset="filled"
-            onPress={continueWithGoogle}
+            onPress={signInType}
             textStyle={$buttonLabel}
             style={$button}
           />
         </View>
-      </Screen>
+      </View>
     )
   },
 )
@@ -79,15 +78,11 @@ export const GetStartedScreen: FC<StackScreenProps<AppStackScreenProps, "GetStar
 const $root: ViewStyle = {
   flex: 1,
 }
-const $topContainer: ViewStyle = {
-  flexBasis: "68%",
-  justifyContent: "center",
-}
+
 const $bottomContainer: ViewStyle = {
-  flexBasis: "47%",
   backgroundColor: "white",
   paddingTop: 25,
-  marginTop: -65,
+  marginTop: -25,
   paddingBottom: spacing.medium,
   paddingHorizontal: spacing.medium,
   borderTopLeftRadius: 30,
