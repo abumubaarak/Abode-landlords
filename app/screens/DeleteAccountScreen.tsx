@@ -9,7 +9,7 @@ import { Button, Screen, Text } from "../components"
 import useUser from "../hooks/useUser"
 import { AppStackScreenProps, navigate } from "../navigators"
 import { colors, spacing } from "../theme"
-import { USERS } from "../utils/firebase"
+import { USERS } from "../utils"
 
 
 

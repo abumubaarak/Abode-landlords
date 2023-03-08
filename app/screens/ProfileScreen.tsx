@@ -11,8 +11,7 @@ import useFirestore from "../hooks/useFirestore"
 import useUser from "../hooks/useUser"
 import { AppStackScreenProps, navigate, resetRoot } from "../navigators"
 import { colors, spacing, typography } from "../theme"
-import { avatarName } from "../utils"
-import { USERS } from "../utils/firebase"
+import { avatarName, USERS } from "../utils"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore
