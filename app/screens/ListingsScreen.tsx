@@ -10,7 +10,7 @@ import useUser from "../hooks/useUser"
 import { useUtils } from "../hooks/useUtils"
 import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
-import { PROPERTY } from "../utils/firebase"
+import { PROPERTY } from "../utils"
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore

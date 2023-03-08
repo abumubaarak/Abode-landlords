@@ -17,8 +17,7 @@ import { AppStackParamList, AppStackScreenProps } from "../navigators";
 import { colors, typography } from "../theme";
 
 import MapboxGL from '@rnmapbox/maps';
-import { capitalizeFirstLetter, currencyFormat } from "../utils";
-import { PROPERTY } from "../utils/firebase";
+import { capitalizeFirstLetter, currencyFormat, PROPERTY } from "../utils";
 
 // REMOVE ME! ⬇️ This TS ignore will not be necessary after you've added the correct navigator param type
 // @ts-ignore

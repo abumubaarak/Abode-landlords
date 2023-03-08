@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 import { ActivityIndicator, StyleProp, TextStyle, ViewStyle } from "react-native"
 import useFirestore from "../hooks/useFirestore"
 import { colors, typography } from "../theme"
-import { USERS } from "../utils/firebase"
+import { USERS } from "../utils"
 import { Text } from "./Text"
 
 export interface UserLabelProps {

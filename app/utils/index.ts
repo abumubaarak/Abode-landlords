@@ -12,3 +12,7 @@ export const currencyFormat = (value: string) => {
 export const capitalizeFirstLetter = (value: string) => {
   return value?.charAt(0)?.toUpperCase() + value?.slice(1);
 }
+export const PROPERTY = "Property"
+export const USERS = "Users"
+export const REQUEST = "Request"
+export const WISHLISTS = "Wishlists"

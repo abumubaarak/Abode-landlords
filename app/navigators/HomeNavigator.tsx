@@ -16,7 +16,7 @@ import {
   RequestScreen
 } from "../screens"
 import { colors, spacing, typography } from "../theme"
-import { USERS } from "../utils/firebase"
+import { USERS } from "../utils"
 import { navigate, resetRoot } from "./navigationUtilities"
 
 export type HomeNavigatorParamList = {

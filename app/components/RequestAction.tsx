@@ -8,7 +8,7 @@ import { useToast } from "react-native-toast-notifications"
 import useApi from "../hooks/useApi"
 import { Messages } from "../services/api"
 import { colors } from "../theme"
-import { REQUEST } from "../utils/firebase"
+import { REQUEST } from "../utils"
 
 export interface RequestActionProps {
   /**

@@ -6,8 +6,7 @@ import { Pressable, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import useFirestore from "../hooks/useFirestore"
 import { Messages } from "../services/api"
 import { colors, spacing, typography } from "../theme"
-import { avatarName } from "../utils"
-import { USERS } from "../utils/firebase"
+import { avatarName, USERS } from "../utils"
 import { Text } from "./Text"
 
 export interface ChatItemProps {

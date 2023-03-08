@@ -4,8 +4,7 @@ import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import FastImage, { ImageStyle } from "react-native-fast-image"
 import useFirestore from "../hooks/useFirestore"
 import { colors, typography } from "../theme"
-import { capitalizeFirstLetter } from "../utils"
-import { PROPERTY } from "../utils/firebase"
+import { capitalizeFirstLetter, PROPERTY } from "../utils"
 import { Text } from "./Text"
 
 export interface ListingInfoProps {
